@@ -207,6 +207,10 @@ public final class Dependency {
             return scope(Scope.PROFILE);
         }
 
+        public Builder integrationTestImplementationTestFixtures() {
+            return scope(Scope.INTEGRATION_TEST_IMPLEMENTATION_TEST_FIXTURES);
+        }
+
         public Builder annotationProcessor(boolean requiresPriority) {
             this.annotationProcessorPriority = requiresPriority;
             return annotationProcessor();

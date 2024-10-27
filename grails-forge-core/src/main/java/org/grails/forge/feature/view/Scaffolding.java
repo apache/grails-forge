@@ -81,7 +81,7 @@ public class Scaffolding implements DefaultFeature {
     public void apply(GeneratorContext generatorContext) {
         generatorContext.addDependency(Dependency.builder()
                 .groupId("org.fusesource.jansi")
-                .lookupArtifactId("jansi")
+                .artifactId("jansi")
                 .runtime());
 
         generatorContext.addDependency(Dependency.builder()

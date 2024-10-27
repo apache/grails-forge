@@ -67,7 +67,7 @@ public class AssetPipeline implements DefaultFeature {
 
         generatorContext.addDependency(Dependency.builder()
                 .groupId("com.bertramlabs.plugins")
-                .lookupArtifactId("asset-pipeline-grails")
+                .artifactId("asset-pipeline-grails")
                 .runtime());
 
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();

@@ -14,7 +14,7 @@ Features features)
 
 @grailsGradlePluginVersion => { @coordinateResolver.apply("grails-gradle-plugin").getVersion() }
 @viewsGradlePluginVersion => { @coordinateResolver.apply("views-gradle").getVersion() }
-@assetPipelineVersion => { @coordinateResolver.apply("asset-pipeline-grails").getVersion() }
+@assetPipelineVersion => { @coordinateResolver.apply("asset-pipeline-gradle").getVersion() }
 
 @gradleBuild.renderSettingsExtensions()
 

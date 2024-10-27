@@ -37,10 +37,11 @@ public enum GradleConfiguration implements Ordered {
     RUNTIME_ONLY("runtimeOnly", 7),
     TEST_ANNOTATION_PROCESSOR("testAnnotationProcessor", 8),
     TEST_KAPT("kaptTest", 9),
-    TEST_IMPLEMENTATION("testImplementation", 10),
-    TEST_COMPILE_ONLY("testCompileOnly", 11),
-    TEST_RUNTIME_ONLY("testRuntimeOnly", 12),
-    OPENREWRITE("rewrite", 13);
+    INTEGRATION_TEST_IMPLEMENTATION_TEST_FIXTURES("integrationTestImplementation testFixtures", 10),
+    TEST_IMPLEMENTATION("testImplementation", 11),
+    TEST_COMPILE_ONLY("testCompileOnly", 12),
+    TEST_RUNTIME_ONLY("testRuntimeOnly", 13),
+    OPENREWRITE("rewrite", 14);
 
     private final String configurationName;
     private final int order;
@@ -98,6 +99,9 @@ public enum GradleConfiguration implements Ordered {
                 }
                 if (scope.getPhases().contains(Phase.PROFILE)) {
                     return Optional.of(GradleConfiguration.PROFILE);
+                }
+                if (scope.getPhases().contains(Phase.INTEGRATION_TEST_IMPLEMENTATION_TEST_FIXTURES)) {
+                    return Optional.of(GradleConfiguration.INTEGRATION_TEST_IMPLEMENTATION_TEST_FIXTURES);
                 }
                 break;
 

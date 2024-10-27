@@ -19,7 +19,7 @@ GradleBuild gradleBuild
 )
 
 @seleniumVersion => { @coordinateResolver.apply("selenium-api").getVersion() }
-@assetPipelineVersion => { @coordinateResolver.apply("asset-pipeline-grails").getVersion() }
+@assetPipelineVersion => { @coordinateResolver.apply("asset-pipeline-gradle").getVersion() }
 
 @for (String importLine : gradleBuild.getPluginsImports()) {
 @(importLine)
@@ -43,18 +43,7 @@ apply from: "gradle/asciidoc.gradle"
 repositories {
     mavenCentral()
     maven { url "https://repo.grails.org/grails/core/" }
-}
-
-configurations {
-    all {
-        @if (features.contains("geb")) {
-        resolutionStrategy.eachDependency { DependencyResolveDetails details->
-            if (details.requested.group == 'org.seleniumhq.selenium') {
-                details.useVersion('@seleniumVersion')
-            }
-        }
-        }
-    }
+    maven { url "https://repository.apache.org/content/repositories/snapshots"}
 }
 
 @dependencies.template(applicationType, project, features, gradleBuild)
@@ -66,11 +55,7 @@ application {
 
 }
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(@features.getTargetJdk())
-    }
-}
+compileJava.options.release = @features.getTargetJdk()
 
 @if (features.contains("jrebel")) {
 run {
