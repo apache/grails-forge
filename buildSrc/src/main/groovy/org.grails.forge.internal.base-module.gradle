@@ -84,7 +84,7 @@ dependencies {
 
     testImplementation "cglib:cglib-nodep:3.3.0"
     testImplementation "org.objenesis:objenesis:3.3"
-    testRuntimeOnly "ch.qos.logback:logback-classic:1.5.10"
+    testRuntimeOnly "ch.qos.logback:logback-classic:1.5.12"
     testImplementation "org.codehaus.groovy:groovy-test:$groovyVersion"
 }
 
