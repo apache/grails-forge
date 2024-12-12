@@ -101,7 +101,8 @@ public class GradleDependency extends DependencyCoordinate {
 
     @NonNull
     public String toSnippet() {
-        String snippet = gradleConfiguration.getConfigurationName() + " ";
+        String optionalSpace = gradleConfiguration == INTEGRATION_TEST_IMPLEMENTATION_TEST_FIXTURES ? "" : " ";
+        String snippet = gradleConfiguration.getConfigurationName() + optionalSpace;
         if (isPom()) {
             snippet += "platform(";
         } else if (gradleConfiguration == INTEGRATION_TEST_IMPLEMENTATION_TEST_FIXTURES) {
