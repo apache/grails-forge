@@ -1,0 +1,137 @@
+name: "Prev Snapshot GCP Deploy"
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    name: "Build Project"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "📥 Checkout repository"
+        uses: actions/checkout@v4
+      - name: "☕️ Setup JDK"
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'liberica'
+          java-version: '11'
+      - name: "🐘 Setup Gradle"
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          develocity-access-key: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
+      - name: "🔨 Run Build"
+        id: build
+        env:
+          DEVELOCITY_BUILD_CACHE_NODE_USER: ${{ secrets.GRADLE_ENTERPRISE_BUILD_CACHE_NODE_USER }}
+          DEVELOCITY_BUILD_CACHE_NODE_KEY: ${{ secrets.GRADLE_ENTERPRISE_BUILD_CACHE_NODE_KEY }}
+        run: ./gradlew build
+  deploy:
+    name: "Deploy To Google Cloud Run"
+    runs-on: ubuntu-latest
+    needs: [build]
+    env:
+      IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}:prev-snapshot
+    steps:
+      - name: "🔑 Login"
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_email: ${{ secrets.GCP_EMAIL }}
+          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+      - name: "🐋 Configure Docker"
+        run: gcloud auth configure-docker --quiet
+      - name: "📥 Checkout repository"
+        uses: actions/checkout@v4
+      - name: "☕️ Setup JDK"
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'liberica'
+          java-version: '11'
+      - name: "🐘 Setup Gradle"
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          develocity-access-key: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
+      - name: "✅ Run Tests"
+        env:
+          DEVELOCITY_BUILD_CACHE_NODE_USER: ${{ secrets.GRADLE_ENTERPRISE_BUILD_CACHE_NODE_USER }}
+          DEVELOCITY_BUILD_CACHE_NODE_KEY: ${{ secrets.GRADLE_ENTERPRISE_BUILD_CACHE_NODE_KEY }}
+        run: >
+          ./gradlew
+          grails-forge-api:test
+          grails-forge-web-netty:test
+      - name: "🔨 Build Docker image"
+        # To deploy native executables built with GraalVM replace dockerBuild with dockerBuildNative and dockerPush with dockerPushNative. First, try that it works locally.
+        env:
+          DEVELOCITY_BUILD_CACHE_NODE_USER: ${{ secrets.GRADLE_ENTERPRISE_BUILD_CACHE_NODE_USER }}
+          DEVELOCITY_BUILD_CACHE_NODE_KEY: ${{ secrets.GRADLE_ENTERPRISE_BUILD_CACHE_NODE_KEY }}
+        run: >
+          ./gradlew
+          grails-forge-web-netty:dockerBuildNative
+          -PdockerImageName=${{ env.IMAGE_NAME }}
+      - name: "📤 Push image to Google Cloud Container Registry"
+        env:
+          DEVELOCITY_BUILD_CACHE_NODE_USER: ${{ secrets.GRADLE_ENTERPRISE_BUILD_CACHE_NODE_USER }}
+          DEVELOCITY_BUILD_CACHE_NODE_KEY: ${{ secrets.GRADLE_ENTERPRISE_BUILD_CACHE_NODE_KEY }}
+        run: >
+          ./gradlew
+          grails-forge-web-netty:dockerPushNative
+          -PdockerImageName=${{ env.IMAGE_NAME }}
+      - name: "🚀 Deploy Docker image"
+        run: >
+          gcloud run deploy ${{ secrets.GCP_PROJECT_ID }}-prev-snapshot
+          --image $IMAGE_NAME
+          --region us-central1
+          --update-env-vars=HOSTNAME="prev-snapshot.grails.org",CORS_ALLOWED_ORIGIN="https://start.grails.org",GITHUB_OAUTH_APP_CLIENT_ID=${{ secrets.GH_OAUTH_SNAPSHOT_CLIENT_ID }},GITHUB_OAUTH_APP_CLIENT_SECRET=${{ secrets.GH_OAUTH_SNAPSHOT_CLIENT_SECRET }},GITHUB_USER_AGENT=${{ secrets.GH_USER_AGENT }},GITHUB_REDIRECT_URL=${{ secrets.GH_REDIRECT_URL }}
+          --platform managed
+          --allow-unauthenticated
+          --service-account=${{ secrets.GCLOUD_EMAIL }}
+  deployAnalytics:
+    name: "Deploy Analytics To Google Cloud Run"
+    runs-on: ubuntu-latest
+    needs: [build]
+    env:
+      IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}-analytics:prev-snapshot
+    steps:
+      - name: "🔑 Login"
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_email: ${{ secrets.GCP_EMAIL }}
+          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+      - name: "🐋 Configure Docker"
+        run: gcloud auth configure-docker --quiet
+      - name: "📥 Checkout repository"
+        uses: actions/checkout@v4
+      - name: "☕️ Setup JDK"
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'liberica'
+          java-version: '11'
+      - name: "🐘 Setup Gradle"
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          develocity-access-key: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
+      - name: "✅ Run Tests"
+        env:
+          DEVELOCITY_BUILD_CACHE_NODE_USER: ${{ secrets.GRADLE_ENTERPRISE_BUILD_CACHE_NODE_USER }}
+          DEVELOCITY_BUILD_CACHE_NODE_KEY: ${{ secrets.GRADLE_ENTERPRISE_BUILD_CACHE_NODE_KEY }}
+        run: ./gradlew grails-forge-analytics-postgres:test
+      - name: "🔨 Build Docker image"
+        # To deploy native executables built with GraalVM replace dockerBuild with dockerBuildNative and dockerPush with dockerPushNative. First, try that it works locally.
+        env:
+          DEVELOCITY_BUILD_CACHE_NODE_USER: ${{ secrets.GRADLE_ENTERPRISE_BUILD_CACHE_NODE_USER }}
+          DEVELOCITY_BUILD_CACHE_NODE_KEY: ${{ secrets.GRADLE_ENTERPRISE_BUILD_CACHE_NODE_KEY }}
+        run: >
+          ./gradlew
+          grails-forge-analytics-postgres:dockerBuildNative
+          -PdockerImageName=${{ env.IMAGE_NAME }}
+      - name: "📤 Push image to Google Cloud Container Registry"
+        env:
+          DEVELOCITY_BUILD_CACHE_NODE_USER: ${{ secrets.GRADLE_ENTERPRISE_BUILD_CACHE_NODE_USER }}
+          DEVELOCITY_BUILD_CACHE_NODE_KEY: ${{ secrets.GRADLE_ENTERPRISE_BUILD_CACHE_NODE_KEY }}
+        run: >
+          ./gradlew
+          grails-forge-analytics-postgres:dockerPushNative
+          -PdockerImageName=${{ env.IMAGE_NAME }}
+      - name: "🚀 Deploy Docker image"
+        run: |
+          gcloud components install beta --quiet
+          gcloud run deploy ${{ secrets.GCP_PROJECT_ID }}-analytics-prev-snapshot --image $IMAGE_NAME --region us-central1 --platform managed --allow-unauthenticated --service-account=${{ secrets.GCLOUD_EMAIL }}
