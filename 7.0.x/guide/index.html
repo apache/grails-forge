@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>Grails Application Forge</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8" />
+    <link rel="stylesheet" href="../css/custom.css" type="text/css" media="screen, print" title="Style" charset="utf-8" />
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8" />
+    <link rel="stylesheet" href="../css/highlight/agate.css">
+    <script src="../js/highlight.pack.js"></script>
+    <script src="../js/guide.js"></script>
+    <script src="../js/multi-language-sample.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <link rel="stylesheet" href="../css/multi-language-sample.css"/>
+    <script src="../js/docs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.13/clipboard.min.js"></script>
+    <script type="text/javascript">
+        function addJsClass(el) {
+            var classes = document.body.className.split(" ");
+            classes.push("js");
+            document.body.className = classes.join(" ");
+        }
+    </script>
+
+</head>
+
+<body class="body" id="docs" onload="addJsClass();" onhashchange="highlightMenu()">
+
+<div id="table-of-content-nav-link" class="desktop">
+    <a id="theme-switcher" title="Switch to dark theme" href="javascript:switchTheme(true)"><i class="fa fa-moon-o"></i></a>
+    <a title="Collapse/Open Table of contents" title="Hide Table of Contents" href="javascript:hideTableOfContents();" class="button">[ + ]</a>
+</div>
+
+<div id="main">
+    <div id="navigation" class="no-print">
+        <div class="navTitle">
+            <span id="logo"><a href="http://micronaut.io" title="Go to Micronaut Website"><img src="../img/micronaut-logo-white.svg" alt="Micronaut"/></a></span>
+        </div>
+        <div class="navLinks">
+            <ul>
+                    <li><div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)" class="desktop">
+                            <a href="../guide/index.html" class="button">Table of contents</a>
+                            <div id="nav-summary-childs" style="display:none;">
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#introduction"><strong>1</strong><span>Introduction</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#installation"><strong>2</strong><span>Installation</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#releaseHistory"><strong>3</strong><span>Release History</span></a></div>
+                                
+                            </div>
+                        </div>
+                    </li>
+
+                <li id="table-of-content-nav-link-mobile" class="mobile">
+                    <a title="Scroll to Table of contents" href="javascript:scrollToTop();" class="button">Toc</a>
+                </li>
+                <li class="desktop">
+                    <a title="Go to API documentation" href="../api/index.html" class="button">API Reference</a>
+                </li>
+                <li class="mobile">
+                    <a title="Go to API documentation" href="../api/index.html" class="button">API</a>
+                </li>
+                <li class="desktop">
+                    <a title="Go to Configuration Reference documentation" href="../guide/configurationreference.html" class="button">Configuration Reference</a>
+                </li>
+                <li class="mobile">
+                    <a title="Go to Configuration Reference documentation" href="../guide/configurationreference.html" class="button">Conf</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    
+    <div id="table-of-content">
+        <div class="toc-content">
+
+        <h2>Table of Contents</h2>
+        
+        <div class="toc-item" style="margin-left:0px" id="toc-item-introduction"><a href="#introduction"><strong>1</strong><span>Introduction</span></a></div>
+        
+        <div class="toc-item" style="margin-left:0px" id="toc-item-installation"><a href="#installation"><strong>2</strong><span>Installation</span></a></div>
+        
+        <div class="toc-item" style="margin-left:10px" id="toc-item-installSdkman"><a href="#installSdkman"><strong>2.1</strong><span>Install with SDKman</span></a></div>
+        
+        <div class="toc-item" style="margin-left:10px" id="toc-item-installWindows"><a href="#installWindows"><strong>2.2</strong><span>Install through Binary on Windows</span></a></div>
+        
+        <div class="toc-item" style="margin-left:10px" id="toc-item-installFromSource"><a href="#installFromSource"><strong>2.3</strong><span>Build &amp; Install from Source</span></a></div>
+        
+        <div class="toc-item" style="margin-left:0px" id="toc-item-releaseHistory"><a href="#releaseHistory"><strong>3</strong><span>Release History</span></a></div>
+        
+        </div>
+    </div>
+    
+    <div class="docs-content">
+    <div class="project">
+        <h1>Grails Application Forge</h1>
+        <p></p>
+        <p>Generates Grails applications</p>
+        <p><strong>Version:</strong> <select style='max-width: 200px' onChange='window.document.location.href=this.options[this.selectedIndex].value;'><option value='https://grails.github.io/grails-forge/snapshot/guide/index.html'>SNAPSHOT</option><option value='https://grails.github.io/grails-forge/latest/guide/index.html'>LATEST</option><option selected='selected' value='https://grails.github.io/grails-forge/7.0.0-M1/guide/index.html'>7.0.0-M1</option><option value='https://grails.github.io/grails-forge/6.2.2/guide/index.html'>6.2.2</option><option value='https://grails.github.io/grails-forge/6.2.1/guide/index.html'>6.2.1</option><option value='https://grails.github.io/grails-forge/6.2.0/guide/index.html'>6.2.0</option><option value='https://grails.github.io/grails-forge/6.1.2/guide/index.html'>6.1.2</option><option value='https://grails.github.io/grails-forge/6.1.1/guide/index.html'>6.1.1</option><option value='https://grails.github.io/grails-forge/6.1.0/guide/index.html'>6.1.0</option><option value='https://grails.github.io/grails-forge/6.0.0/guide/index.html'>6.0.0</option><option value='https://grails.github.io/grails-forge/6.0.0-RC1/guide/index.html'>6.0.0-RC1</option><option value='https://grails.github.io/grails-forge/6.0.0-M4/guide/index.html'>6.0.0-M4</option><option value='https://grails.github.io/grails-forge/6.0.0-M3/guide/index.html'>6.0.0-M3</option><option value='https://grails.github.io/grails-forge/6.0.0-M2/guide/index.html'>6.0.0-M2</option></select> </p>
+    </div>
+    
+<h1 id="introduction"><a class="anchor" href="#introduction"></a>1 Introduction</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/grails/grails-forge/edit/7.0.x/src/main/docs/guide/introduction.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>This project implements a project generator for Grails as is both a Command Line (CLI) application and an API that can be run as a HTTP server, deployed to a Servlet container or executed on a Serverless platform (Google Cloud Run, Google Cloud Function, AWS Lambda or Azure Function).</p>
+</div>
+
+<h1 id="installation"><a class="anchor" href="#installation"></a>2 Installation</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/grails/grails-forge/edit/7.0.x/src/main/docs/guide/installation.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+
+
+<h2 id="installSdkman"><a class="anchor" href="#installSdkman"></a>2.1 Install with SDKman</h2>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/grails/grails-forge/edit/7.0.x/src/main/docs/guide/installation/installSdkman.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>The best way to install Grails on Unix systems is with <a href="http://sdkman.io/">SDKMAN</a> which greatly simplifies installing
+and managing multiple Grails versions.</p>
+</div>
+<div class="paragraph">
+<p>Before updating make sure you have latest version of SDKMAN installed. If not, run</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ sdk update</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In order to install Grails, run following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ sdk install grails</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also specify the version to the <code>sdk install</code> command.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ sdk install grails {project-version}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can find more information about SDKMAN usage on the <a href="http://sdkman.io/usage">SDKMAN Docs</a></p>
+</div>
+<div class="paragraph">
+<p>You should now be able to run the Grails CLI.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ grails
+| Starting interactive mode...
+| Enter a command name to run. Use TAB for completion:
+grails&gt;</code></pre>
+</div>
+</div>
+
+<h2 id="installWindows"><a class="anchor" href="#installWindows"></a>2.2 Install through Binary on Windows</h2>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/grails/grails-forge/edit/7.0.x/src/main/docs/guide/installation/installWindows.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="ulist">
+<ul>
+<li>
+<p>Download the latest binary from <a href="https://github.com/grails/grails-forge/releases/">Grails Forge Release</a></p>
+</li>
+<li>
+<p>Extract the binary to appropriate location (For example: <code>C:\grails</code>)</p>
+</li>
+<li>
+<p>Create an environment variable <code>GRAILS_HOME</code> which points to the installation directory i.e. <code>C:\grails</code></p>
+</li>
+<li>
+<p>Update the <code>PATH</code> environment variable, append <code>%GRAILS_HOME%\bin</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You should now be able to run the Grails CLI from the command prompt as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ grails
+| Starting interactive mode...
+| Enter a command name to run. Use TAB for completion:
+grails&gt;</code></pre>
+</div>
+</div>
+
+<h2 id="installFromSource"><a class="anchor" href="#installFromSource"></a>2.3 Build & Install from Source</h2>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/grails/grails-forge/edit/7.0.x/src/main/docs/guide/installation/installFromSource.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>Clone the repository as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/grails/grails-forge.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>cd</code> into the <code>grails-forge</code> directory and run the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./gradlew grails-cli:assembleDist</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will create a zip distribution of the CLI (named with the current version) in the <code>grails-cli/build/distributions/</code> folder.</p>
+</div>
+<div class="paragraph">
+<p>You&#8217;ll need to unzip this somewhere convenient. For example, to unzip it to a dot directory in your user home, you could do:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ mkdir ~/.grails
+$ unzip grails-cli/build/distributions/grails-cli-VERSION.zip -d ~/.grails</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In your shell profile (<code>~/.bash_profile</code> if you are using the Bash shell), export the <code>GRAILS_HOME</code> directory (wherever you unzipped it to) and add the CLI path to your <code>PATH</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">bash_profile/.bashrc</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export GRAILS_HOME=~/path/to/unzipped/cli
+export PATH="$PATH:$GRAILS_HOME/bin"</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you&#8217;re using SDKMAN and don&#8217;t want to mess with your $GRAILS_HOME, you can also point SDKMAN to your
+local installation for dev purposes by using <code>sdk install grails dev path/to/unzipped/cli</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Reload your terminal or <code>source</code> your shell profile with <code>source</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ source ~/.bash_profile</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You will now be able to run the Grails CLI.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ grails
+| Starting interactive mode...
+| Enter a command name to run. Use TAB for completion:
+grails&gt;</code></pre>
+</div>
+</div>
+
+<h1 id="releaseHistory"><a class="anchor" href="#releaseHistory"></a>3 Release History</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/grails/grails-forge/edit/7.0.x/src/main/docs/guide/releaseHistory.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="sect3">
+<h4 id="_6_0_0_m4">6.0.0-M4</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>In the previous release, the grailsVersion and grailsGradlePlugin version points to the 6.0.0-SNAPSHOT for a newly created Grails application. This Release fix the problem by correctly pointing them to 6.0.0-M4.</p>
+</li>
+<li>
+<p>There was no embedded servlet selected by default, but this release select Embedded Tomcat as the default servlet implementation.</p>
+</li>
+<li>
+<p>Add New Option for selecting the Embedded Servlet implementation between Tomcat, Jetty, Undertow, or None.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_0_0_m3">6.0.0-M3</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Initial Milestone Release</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_0_0_m2">6.0.0-M2</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Initial Milestone Release</p>
+</li>
+</ul>
+</div>
+</div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
