@@ -79,16 +79,16 @@ jobs:
         env:
           VERSION: ${{ github.event.release.tag_name }}
         run: |
-          mkdir -p grails-linux-amd64-snapshot/bin
-          mv ./grails-cli/build/native/nativeCompile/grails grails-linux-amd64-snapshot/bin
-          cp ./LICENSE grails-linux-amd64-snapshot/
-          zip -r grails-linux-amd64-snapshot.zip ./grails-linux-amd64-snapshot
+          mkdir -p grailsforge-linux-amd64-snapshot/bin
+          mv ./grails-cli/build/native/nativeCompile/grails grailsforge-linux-amd64-snapshot/bin
+          cp ./LICENSE grailsforge-linux-amd64-snapshot/
+          zip -r grailsforge-linux-amd64-snapshot.zip ./grailsforge-linux-amd64-snapshot
       - name: "📤 Upload Artifact to Workflow Summary Page"
         if: success() && github.event_name == 'push' && github.ref == 'refs/heads/7.0.x'
         uses: actions/upload-artifact@v4
         with:
-          name: grails-linux-amd64-snapshot
-          path: grails-linux-amd64-snapshot.zip
+          name: grailsforge-linux-amd64-snapshot
+          path: grailsforge-linux-amd64-snapshot.zip
   macos:
     name: "Build OS X Intel Native CLI"
     runs-on: macos-13
@@ -120,16 +120,16 @@ jobs:
         env:
           VERSION: ${{ github.event.release.tag_name }}
         run: |
-          mkdir -p grails-darwin-amd64-snapshot/bin
-          mv ./grails-cli/build/native/nativeCompile/grails grails-darwin-amd64-snapshot/bin
-          cp ./LICENSE grails-darwin-amd64-snapshot/
-          zip -r grails-darwin-amd64-snapshot.zip ./grails-darwin-amd64-snapshot -x '*.DS_Store*' -x '__MAC_OSX'
+          mkdir -p grailsforge-darwin-amd64-snapshot/bin
+          mv ./grails-cli/build/native/nativeCompile/grails grailsforge-darwin-amd64-snapshot/bin
+          cp ./LICENSE grailsforge-darwin-amd64-snapshot/
+          zip -r grailsforge-darwin-amd64-snapshot.zip ./grailsforge-darwin-amd64-snapshot -x '*.DS_Store*' -x '__MAC_OSX'
       - name: "📤 Upload Artifact to Workflow Summary Page"
         if: success() && github.event_name == 'push' && github.ref == 'refs/heads/7.0.x'
         uses: actions/upload-artifact@v4
         with:
-          name: grails-darwin-amd64-snapshot
-          path: grails-darwin-amd64-snapshot.zip
+          name: grailsforge-darwin-amd64-snapshot
+          path: grailsforge-darwin-amd64-snapshot.zip
   macos-arm:
     name: "Build OS X Arm Native CLI"
     runs-on: macos-latest
@@ -161,16 +161,16 @@ jobs:
         env:
           VERSION: ${{ github.event.release.tag_name }}
         run: |
-          mkdir -p grails-darwin-aarch64-snapshot/bin
-          mv ./grails-cli/build/native/nativeCompile/grails grails-darwin-aarch64-snapshot/bin
-          cp ./LICENSE grails-darwin-aarch64-snapshot/
-          zip -r grails-darwin-aarch64-snapshot.zip grails-darwin-aarch64-snapshot/ -x '*.DS_Store*' -x '__MAC_OSX'
+          mkdir -p grailsforge-darwin-aarch64-snapshot/bin
+          mv ./grails-cli/build/native/nativeCompile/grails grailsforge-darwin-aarch64-snapshot/bin
+          cp ./LICENSE grailsforge-darwin-aarch64-snapshot/
+          zip -r grailsforge-darwin-aarch64-snapshot.zip grailsforge-darwin-aarch64-snapshot/ -x '*.DS_Store*' -x '__MAC_OSX'
       - name: "📤 Upload Artifact to Workflow Summary Page"
         if: success() && github.event_name == 'push' && github.ref == 'refs/heads/7.0.x'
         uses: actions/upload-artifact@v4
         with:
-          name: grails-darwin-aarch64-snapshot
-          path: grails-darwin-aarch64-snapshot.zip
+          name: grailsforge-darwin-aarch64-snapshot
+          path: grailsforge-darwin-aarch64-snapshot.zip
   windows:
     name: "Build Windows Native CLI"
     runs-on: windows-latest
@@ -208,13 +208,13 @@ jobs:
         run: grails-cli\\build\\native\\nativeCompile\\grails create-app test2
       - name: "📦 ZIP Archive"
         run: |
-          New-Item "./grails-win-amd64-snapshot/bin" -ItemType Directory -ea 0
-          Move-Item -Path ./grails-cli/build/native/nativeCompile/grails.exe -Destination "./grails-win-amd64-snapshot/bin"
-          Copy-Item "./LICENSE" -Destination "./grails-win-amd64-snapshot"
-          Compress-Archive -Path "./grails-win-amd64-snapshot" -Update -DestinationPath ./grails-win-amd64-snapshot.zip
+          New-Item "./grailsforge-win-amd64-snapshot/bin" -ItemType Directory -ea 0
+          Move-Item -Path ./grails-cli/build/native/nativeCompile/grails.exe -Destination "./grailsforge-win-amd64-snapshot/bin"
+          Copy-Item "./LICENSE" -Destination "./grailsforge-win-amd64-snapshot"
+          Compress-Archive -Path "./grailsforge-win-amd64-snapshot" -Update -DestinationPath ./grailsforge-win-amd64-snapshot.zip
       - name: "📤 Upload Artifact to Workflow Summary Page"
         if: success() && github.event_name == 'push' && github.ref == 'refs/heads/7.0.x'
         uses: actions/upload-artifact@v4
         with:
-          name: grails-win-amd64-snapshot
-          path: ./grails-win-amd64-snapshot.zip
+          name: grailsforge-win-amd64-snapshot
+          path: ./grailsforge-win-amd64-snapshot.zip

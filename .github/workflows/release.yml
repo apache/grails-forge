@@ -142,10 +142,10 @@ jobs:
         env:
           VERSION: ${{ github.event.release.tag_name }}
         run: |
-          mkdir -p "grails-linux-amd64-${VERSION}/bin"
-          mv ./grails-cli/build/native/nativeCompile/grails "grails-linux-amd64-${VERSION}/bin"
-          cp ./LICENSE "grails-linux-amd64-${VERSION}/"
-          zip -r "grails-linux-amd64-${VERSION}.zip" "grails-linux-amd64-${VERSION}/"
+          mkdir -p "grailsforge-linux-amd64-${VERSION}/bin"
+          mv ./grails-cli/build/native/nativeCompile/grails "grailsforge-linux-amd64-${VERSION}/bin"
+          cp ./LICENSE "grailsforge-linux-amd64-${VERSION}/"
+          zip -r "grailsforge-linux-amd64-${VERSION}.zip" "grailsforge-linux-amd64-${VERSION}/"
       - name: "📤 Upload Release Asset"
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
@@ -153,8 +153,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./grails-linux-amd64-${{ github.event.release.tag_name }}.zip
-          asset_name: grails-linux-amd64-${{ github.event.release.tag_name }}.zip
+          asset_path: ./grailsforge-linux-amd64-${{ github.event.release.tag_name }}.zip
+          asset_name: grailsforge-linux-amd64-${{ github.event.release.tag_name }}.zip
           asset_content_type: application/zip
   macos:
     name: "Release OS X Intel Native CLI"
@@ -189,10 +189,10 @@ jobs:
         env:
           VERSION: ${{ github.event.release.tag_name }}
         run: |
-          mkdir -p "grails-darwin-amd64-${VERSION}/bin"
-          mv ./grails-cli/build/native/nativeCompile/grails "grails-darwin-amd64-${VERSION}/bin"
-          cp ./LICENSE "grails-darwin-amd64-${VERSION}/"
-          zip -r "grails-darwin-amd64-${VERSION}.zip" "grails-darwin-amd64-${VERSION}/" -x '*.DS_Store*' -x '__MAC_OSX'
+          mkdir -p "grailsforge-darwin-amd64-${VERSION}/bin"
+          mv ./grails-cli/build/native/nativeCompile/grails "grailsforge-darwin-amd64-${VERSION}/bin"
+          cp ./LICENSE "grailsforge-darwin-amd64-${VERSION}/"
+          zip -r "grailsforge-darwin-amd64-${VERSION}.zip" "grailsforge-darwin-amd64-${VERSION}/" -x '*.DS_Store*' -x '__MAC_OSX'
       - name: "📤 Upload Release Asset"
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
@@ -200,8 +200,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./grails-darwin-amd64-${{ github.event.release.tag_name }}.zip
-          asset_name: grails-darwin-amd64-${{ github.event.release.tag_name }}.zip
+          asset_path: ./grailsforge-darwin-amd64-${{ github.event.release.tag_name }}.zip
+          asset_name: grailsforge-darwin-amd64-${{ github.event.release.tag_name }}.zip
           asset_content_type: application/zip
   macos-arm:
     name: "Release OS X Arm Native CLI"
@@ -236,10 +236,10 @@ jobs:
         env:
           VERSION: ${{ github.event.release.tag_name }}
         run: |
-          mkdir -p "grails-darwin-aarch64-${VERSION}/bin"
-          mv ./grails-cli/build/native/nativeCompile/grails "grails-darwin-aarch64-${VERSION}/bin"
-          cp ./LICENSE "grails-darwin-aarch64-${VERSION}/"
-          zip -r "grails-darwin-aarch64-${VERSION}.zip" "grails-darwin-aarch64-${VERSION}/" -x '*.DS_Store*' -x '__MAC_OSX'
+          mkdir -p "grailsforge-darwin-aarch64-${VERSION}/bin"
+          mv ./grails-cli/build/native/nativeCompile/grails "grailsforge-darwin-aarch64-${VERSION}/bin"
+          cp ./LICENSE "grailsforge-darwin-aarch64-${VERSION}/"
+          zip -r "grailsforge-darwin-aarch64-${VERSION}.zip" "grailsforge-darwin-aarch64-${VERSION}/" -x '*.DS_Store*' -x '__MAC_OSX'
       - name: "📤 Upload Release Asset"
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
@@ -247,8 +247,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./grails-darwin-aarch64-${{ github.event.release.tag_name }}.zip
-          asset_name: grails-darwin-aarch64-${{ github.event.release.tag_name }}.zip
+          asset_path: ./grailsforge-darwin-aarch64-${{ github.event.release.tag_name }}.zip
+          asset_name: grailsforge-darwin-aarch64-${{ github.event.release.tag_name }}.zip
           asset_content_type: application/zip
   windows:
     name: "Release Windows Native CLI"
@@ -289,10 +289,10 @@ jobs:
         run: grails-cli\\build\\native\\nativeCompile\\grails create-app test2
       - name: "📦 ZIP Archive"
         run: |
-          New-Item ./grails-win-amd64-${{ github.event.release.tag_name }}/bin -ItemType Directory -ea 0
-          Move-Item -Path ./grails-cli/build/native/nativeCompile/grails.exe -Destination ./grails-win-amd64-${{ github.event.release.tag_name }}/bin
-          Copy-Item ./LICENSE -Destination ./grails-win-amd64-${{ github.event.release.tag_name }}
-          Compress-Archive -Path ./grails-win-amd64-${{ github.event.release.tag_name }} -Update -DestinationPath ./grails-win-amd64-${{ github.event.release.tag_name }}.zip
+          New-Item ./grailsforge-win-amd64-${{ github.event.release.tag_name }}/bin -ItemType Directory -ea 0
+          Move-Item -Path ./grails-cli/build/native/nativeCompile/grails.exe -Destination ./grailsforge-win-amd64-${{ github.event.release.tag_name }}/bin
+          Copy-Item ./LICENSE -Destination ./grailsforge-win-amd64-${{ github.event.release.tag_name }}
+          Compress-Archive -Path ./grailsforge-win-amd64-${{ github.event.release.tag_name }} -Update -DestinationPath ./grailsforge-win-amd64-${{ github.event.release.tag_name }}.zip
       - name: "📤 Upload Release Asset"
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
@@ -300,8 +300,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./grails-win-amd64-${{ github.event.release.tag_name }}.zip
-          asset_name: grails-win-amd64-${{ github.event.release.tag_name }}.zip
+          asset_path: ./grailsforge-win-amd64-${{ github.event.release.tag_name }}.zip
+          asset_name: grailsforge-win-amd64-${{ github.event.release.tag_name }}.zip
           asset_content_type: application/zip
   sdkman:
     name: "Release to SDKMAN!"
