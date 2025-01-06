@@ -20,12 +20,12 @@
         <dependency>
             <groupId>org.grails</groupId>
             <artifactId>grails-gradle-plugin</artifactId>
-            <version>6.2.4</version>
+            <version>6.2.5-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.grails.plugins</groupId>
             <artifactId>hibernate5</artifactId>
-            <version>8.1.0</version>
+            <version>8.1.1</version>
         </dependency>
         <dependency>
             <groupId>org.grails.plugins</groupId>
@@ -40,7 +40,7 @@
         <dependency>
             <groupId>org.grails.plugins</groupId>
             <artifactId>database-migration</artifactId>
-            <version>4.2.1</version>
+            <version>5.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.grails.plugins</groupId>
@@ -50,7 +50,7 @@
         <dependency>
             <groupId>org.asciidoctor.jvm.convert</groupId>
             <artifactId>asciidoctor-gradle-jvm</artifactId>
-            <version>4.0.0-alpha.1</version>
+            <version>4.0.3</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -60,7 +60,7 @@
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongodb-driver-sync</artifactId>
-            <version>4.11.3</version>
+            <version>4.11.5</version>
         </dependency>
         <dependency>
             <groupId>org.grails.plugins</groupId>
@@ -135,7 +135,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.10.3</version>
+            <version>5.10.5</version>
         </dependency>
     </dependencies>
 </project>
