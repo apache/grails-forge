@@ -1,5 +1,6 @@
 package org.grails.forge.create
 
+import org.grails.forge.application.ApplicationType
 import org.grails.forge.application.OperatingSystem
 import org.grails.forge.utils.CommandSpec
 
@@ -36,6 +37,55 @@ class CreateAppSpec extends CommandSpec {
 
         expect:
         new File(dir, "grails-app/i18n").exists()
+    }
+
+    void "test create-app creates a correct Application.groovy"() {
+        given:
+        generateProject(OperatingSystem.MACOS_ARCH64, [], ApplicationType.DEFAULT_OPTION)
+        def applicationClassSourceFile = new File(dir, 'grails-app/init/example/grails/Application.groovy')
+
+        expect:
+        applicationClassSourceFile.exists()
+        applicationClassSourceFile.text == '''\
+        package example.grails
+        
+        import grails.boot.GrailsApp
+        import grails.boot.config.GrailsAutoConfiguration
+        import groovy.transform.CompileStatic
+        
+        @CompileStatic
+        class Application extends GrailsAutoConfiguration {
+            static void main(String[] args) {
+                GrailsApp.run(Application, args)
+            }
+        }
+        '''.stripIndent(8)
+    }
+
+    void "test create-app web-plugin creates a correct Application.groovy"() {
+        given:
+        generateProject(OperatingSystem.MACOS_ARCH64, [], ApplicationType.WEB_PLUGIN)
+
+        def applicationClassSourceFile = new File(dir, 'grails-app/init/example/grails/Application.groovy')
+
+        expect:
+        applicationClassSourceFile.exists()
+        applicationClassSourceFile.text == '''\
+        package example.grails
+        
+        import grails.boot.GrailsApp
+        import grails.boot.config.GrailsAutoConfiguration
+        import grails.plugins.metadata.PluginSource
+        import groovy.transform.CompileStatic
+        
+        @PluginSource
+        @CompileStatic
+        class Application extends GrailsAutoConfiguration {
+            static void main(String[] args) {
+                GrailsApp.run(Application, args)
+            }
+        }
+        '''.stripIndent(8)
     }
 
     @Override
