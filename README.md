@@ -1,8 +1,8 @@
 # Grails Application Forge
 
 [![Maven Central](https://img.shields.io/maven-central/v/org.grails.forge/grails-forge-core.svg?label=Maven%20Central)](https://search.maven.org/artifact/org.grails.forge/grails-forge-core)
-[![Build Status](https://github.com/grails/grails-forge/actions/workflows/snapshot.yml/badge.svg?event=push)](https://github.com/grails/grails-forge/actions)
-[![Revved up by Gradle Enterprise](https://img.shields.io/badge/Revved%20up%20by-Gradle%20Enterprise-06A0CE?logo=Gradle&labelColor=02303A)](https://ge.grails.org/scans)
+[![Build Status](https://github.com/grails/grails-forge/actions/workflows/gradle.yml/badge.svg?event=push)](https://github.com/grails/grails-forge/actions)
+[![Revved up by Develocity](https://img.shields.io/badge/Revved%20up%20by-Develocity-06A0CE?logo=Gradle&labelColor=02303A)](https://ge.grails.org/scans?search.rootProjectNames=grails-forge)
 
 Generates Grails applications.
 

@@ -4,6 +4,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+!**/src/integration-test/**/build/
 
 ### STS ###
 .apt_generated
@@ -16,6 +17,7 @@ build/
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
+!**/src/integration-test/**/bin/
 
 ### IntelliJ IDEA ###
 .idea
@@ -25,6 +27,7 @@ bin/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+!**/src/integration-test/**/out/
 
 ### NetBeans ###
 /nbproject/private/

@@ -1,6 +1,6 @@
 plugins {
     id "org.grails.forge.internal.build.cli-module"
-    id 'org.graalvm.buildtools.native' version '0.10.3'
+    id 'org.graalvm.buildtools.native' version '0.10.4'
 }
 
 sourceSets {
@@ -27,24 +27,24 @@ configurations {
 }
 
 dependencies {
-    annotationProcessor("io.micronaut:micronaut-inject-java")
-    annotationProcessor("io.micronaut:micronaut-graal")
+    annotationProcessor "io.micronaut:micronaut-inject-java"
+    annotationProcessor "io.micronaut:micronaut-graal"
     api project(":grails-forge-core")
-    api "info.picocli:picocli:${picocliVersion}"
-    api "info.picocli:picocli-shell-jline3:${picocliVersion}"
+    api "info.picocli:picocli:$picocliVersion"
+    api "info.picocli:picocli-shell-jline3:$picocliVersion"
     api "com.fizzed:rocker-runtime:$rockerVersion"
-    implementation "org.slf4j:slf4j-nop:2.0.16"
-    implementation "org.fusesource.jansi:jansi:2.4.1"
-    implementation "org.yaml:snakeyaml:2.2"
-    implementation group: 'javax.inject', name: 'javax.inject', version: '1'
-    implementation 'org.shredzone.acme4j:acme4j-client:3.2.1'
-    implementation 'org.shredzone.acme4j:acme4j-utils:2.16'
-    generateConfig "info.picocli:picocli-codegen:${picocliVersion}"
+    implementation "org.slf4j:slf4j-nop:$slf4jVersion"
+    implementation "org.fusesource.jansi:jansi:$jansiVersion"
+    implementation "org.yaml:snakeyaml:$snakeyamlVersion"
+    implementation "jakarta.inject:jakarta.inject-api:$jakartaInjectVersion"
+    implementation "org.shredzone.acme4j:acme4j-client:$acme4jClientVersion"
+    implementation "org.shredzone.acme4j:acme4j-utils:$acme4jUtilsVersion"
+    generateConfig "info.picocli:picocli-codegen:$picocliVersion"
     compileOnly "com.google.code.findbugs:jsr305"
     compileOnly "org.graalvm.nativeimage:svm"
-    testImplementation("io.micronaut.picocli:micronaut-picocli")
+    testImplementation "io.micronaut.picocli:micronaut-picocli"
     testImplementation "org.testcontainers:spock"
-    testImplementation 'org.reflections:reflections:0.10.2'
+    testImplementation "org.reflections:reflections:$reflectionsVersion"
 }
 
 graalvmNative {

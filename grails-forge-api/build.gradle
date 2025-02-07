@@ -12,7 +12,7 @@ dependencies {
     api project(":grails-forge-core"), {
         exclude group:'org.slf4j', module:'slf4j-nop'
     }
-    implementation("io.swagger.core.v3:swagger-annotations")
+    implementation "io.swagger.core.v3:swagger-annotations"
     api "io.micronaut:micronaut-inject"
     api "io.micronaut:micronaut-runtime"
     api "io.micronaut:micronaut-http"
@@ -25,5 +25,5 @@ dependencies {
     testImplementation "io.micronaut:micronaut-http-server-netty"
     testImplementation "io.micronaut:micronaut-http-client"
     testImplementation "io.micronaut.test:micronaut-test-spock"
-    testImplementation "ch.qos.logback:logback-classic:1.5.12"
+    testImplementation "ch.qos.logback:logback-classic:$logbackClassicVersion"
 }

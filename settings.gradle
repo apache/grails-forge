@@ -6,12 +6,12 @@ pluginManagement {
 }
 buildscript {
     dependencies {
-        classpath 'org.antlr:antlr4-runtime:4.8-1!!'
+        classpath "org.antlr:antlr4-runtime:$antlr4Version"
     }
 }
 plugins {
-    id "com.gradle.develocity" version "3.18.2"
-    id 'com.gradle.common-custom-user-data-gradle-plugin' version '2.0.2'
+    id "com.gradle.develocity" version "$develocityVersion"
+    id "com.gradle.common-custom-user-data-gradle-plugin" version "$customUserDataVersion"
 }
 
 def isCI = System.getenv('CI') != null

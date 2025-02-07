@@ -74,19 +74,16 @@ public class AssetPipeline implements DefaultFeature {
         generatorContext.addDependency(Dependency.builder()
                 .groupId("org.webjars.npm")
                 .artifactId("bootstrap")
-                .version("5.3.3")
                 .developmentOnly());
 
         generatorContext.addDependency(Dependency.builder()
                 .groupId("org.webjars.npm")
                 .artifactId("bootstrap-icons")
-                .version("1.11.3")
                 .developmentOnly());
 
         generatorContext.addDependency(Dependency.builder()
                 .groupId("org.webjars.npm")
                 .artifactId("jquery")
-                .version("3.7.1")
                 .developmentOnly());
 
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();

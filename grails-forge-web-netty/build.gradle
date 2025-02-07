@@ -1,6 +1,6 @@
 plugins {
-    id("com.github.johnrengelman.shadow")
-    id("io.micronaut.application") version "3.7.10"
+    id "com.github.johnrengelman.shadow"
+    id "io.micronaut.application" version "$micronautApplicationPluginVersion"
 }
 
 version project.projectVersion
@@ -11,12 +11,12 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":grails-forge-api"))
-    implementation("io.micronaut.gcp:micronaut-gcp-http-client")
-    runtimeOnly("ch.qos.logback:logback-classic")
-    testCompileOnly("io.micronaut:micronaut-inject-groovy:$micronautVersion")
-    testImplementation("io.micronaut.test:micronaut-test-spock")
-    testImplementation("io.micronaut:micronaut-http-client")
+    implementation project(":grails-forge-api")
+    implementation "io.micronaut.gcp:micronaut-gcp-http-client"
+    runtimeOnly "ch.qos.logback:logback-classic"
+    testCompileOnly "io.micronaut:micronaut-inject-groovy:$micronautVersion"
+    testImplementation "io.micronaut.test:micronaut-test-spock"
+    testImplementation "io.micronaut:micronaut-http-client"
 }
 tasks.named("test", Test) {
     useJUnitPlatform()
@@ -39,7 +39,7 @@ micronaut {
 }
 tasks.named('dockerfileNative') {
     // https://www.graalvm.org/latest/docs/getting-started/container-images/
-    baseImage("ghcr.io/graalvm/jdk:ol8-java17-22.3.2")
+    baseImage("ghcr.io/graalvm/jdk:ol8-java17-22.3.3")
 }
 
 tasks.named("dockerBuildNative") {

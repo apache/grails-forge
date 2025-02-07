@@ -77,14 +77,14 @@ dependencies {
         testCompileOnly "io.micronaut:micronaut-inject-groovy:${micronautVersion}"
     }
 
-    testImplementation("org.codehaus.groovy:groovy:$groovyVersion")
-    testImplementation("org.spockframework:spock-core:$spockVersion") {
+    testImplementation "org.codehaus.groovy:groovy:$groovyVersion"
+    testImplementation "org.spockframework:spock-core:$spockVersion", {
         exclude group: "org.codehaus.groovy", module: "groovy-all"
     }
 
-    testImplementation "cglib:cglib-nodep:3.3.0"
-    testImplementation "org.objenesis:objenesis:3.3"
-    testRuntimeOnly "ch.qos.logback:logback-classic:1.5.12"
+    testImplementation "cglib:cglib-nodep:$cglibVersion"
+    testImplementation "org.objenesis:objenesis:$objenesisVersion"
+    testRuntimeOnly "ch.qos.logback:logback-classic:$logbackClassicVersion"
     testImplementation "org.codehaus.groovy:groovy-test:$groovyVersion"
 }
 

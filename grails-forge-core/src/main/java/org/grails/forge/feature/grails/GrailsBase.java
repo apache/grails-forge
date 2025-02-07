@@ -51,6 +51,15 @@ public class GrailsBase implements DefaultFeature {
 
     @Override
     public void apply(GeneratorContext generatorContext) {
+
+        // This ensures that grails-bom forces milestones to override snapshots
+        generatorContext.addDependency(Dependency.builder()
+                .groupId("org.grails")
+                .artifactId("grails-bom")
+                .pom(true)
+                .version("$grailsVersion")
+                .implementation());
+
         generatorContext.addDependency(Dependency.builder()
                 .groupId("org.grails")
                 .artifactId("grails-core")
