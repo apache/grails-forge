@@ -26,7 +26,6 @@ import org.grails.forge.feature.Feature;
 import org.grails.forge.feature.view.GrailsGsp;
 import org.grails.forge.feature.web.GrailsWeb;
 import org.grails.forge.options.Options;
-import org.grails.forge.util.VersionInfo;
 
 import java.util.Set;
 
@@ -66,8 +65,6 @@ class GrailsGradlePlugin implements DefaultFeature {
                 .groupId("org.grails")
                 .artifactId("grails-gradle-plugin")
                 .buildSrc());
-
-        String grailsGradlePluginVersion = VersionInfo.getBomVersion("grails-gradle-plugin");
 
         if (applicationType == ApplicationType.PLUGIN || applicationType == ApplicationType.WEB_PLUGIN) {
             generatorContext.addBuildPlugin(GradlePlugin.builder().id("org.grails.grails-plugin").useApplyPlugin(true).build());
