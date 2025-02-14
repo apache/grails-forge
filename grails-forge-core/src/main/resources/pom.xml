@@ -26,7 +26,7 @@
         <dependency>
             <groupId>org.asciidoctor.jvm.convert</groupId>
             <artifactId>asciidoctor-gradle-jvm</artifactId>
-            <version>4.0.3</version>
+            <version>4.0.4</version>
         </dependency>
         <dependency>
             <!-- Last released Oct 17, 2022 -->
