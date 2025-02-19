@@ -33,7 +33,7 @@ jobs:
           sed -i "s/grailsVersion=${GITHUB_REF:11}-SNAPSHOT/grailsVersion\=${GITHUB_REF:11}/" grails-forge-core/src/test/groovy/org/grails/forge/feature/grails/GrailsGradlePluginSpec.groovy
           echo "value=${GITHUB_REF:11}" >> $GITHUB_OUTPUT
       - name: "📝 Commit release version"
-        uses: stefanzweifel/git-auto-commit-action@v5.0.1
+        uses: stefanzweifel/git-auto-commit-action@v5.1.0
         with:
           commit_message: "chore: Update grailsVersion to ${{ steps.release_version.outputs.value }}"
           commit_user_name: ${{ env.GIT_USER_NAME }}
@@ -98,7 +98,7 @@ jobs:
           sed -i "s/^grailsVersion.*$/grailsVersion\=${{ steps.post_release.outputs.next_version }}-SNAPSHOT/" gradle.properties
           sed -i "s/grailsVersion=${GITHUB_REF:11}/grailsVersion\=${{ steps.post_release.outputs.next_version }}-SNAPSHOT/" grails-forge-core/src/test/groovy/org/grails/forge/feature/grails/GrailsGradlePluginSpec.groovy
       - name: "📝 Commit snapshot version"
-        uses: stefanzweifel/git-auto-commit-action@v5.0.1
+        uses: stefanzweifel/git-auto-commit-action@v5.1.0
         continue-on-error: true
         with:
           commit_message: "chore: Next snapshot version"
