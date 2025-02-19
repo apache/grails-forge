@@ -54,24 +54,6 @@ public interface DatabaseDriverConfigurationFeature extends Feature {
         config.put(ENVIRONMENTS_KEY + "." + PROD_ENVIRONMENT_KEY + "." + getDbCreateKey(), "none");
         Optional.ofNullable(dbFeature.getJdbcProdUrl()).ifPresent(url -> config.put(ENVIRONMENTS_KEY + "." + PROD_ENVIRONMENT_KEY + "." + getUrlKey(), url));
 
-        addProductionDataSourceProperties(config, "jmxEnabled", true);
-        addProductionDataSourceProperties(config, "initialSize", 5);
-        addProductionDataSourceProperties(config, "maxActive", 50);
-        addProductionDataSourceProperties(config, "minIdle", 5);
-        addProductionDataSourceProperties(config, "maxIdle", 25);
-        addProductionDataSourceProperties(config, "maxWait", 10000);
-        addProductionDataSourceProperties(config, "maxAge", 600000);
-        addProductionDataSourceProperties(config, "timeBetweenEvictionRunsMillis", 5000);
-        addProductionDataSourceProperties(config, "minEvictableIdleTimeMillis", 60000);
-        addProductionDataSourceProperties(config, "validationQuery", "SELECT 1");
-        addProductionDataSourceProperties(config, "validationQueryTimeout", 3);
-        addProductionDataSourceProperties(config, "validationInterval", 15000);
-        addProductionDataSourceProperties(config, "testOnBorrow", true);
-        addProductionDataSourceProperties(config, "testWhileIdle", true);
-        addProductionDataSourceProperties(config, "testOnReturn", false);
-        addProductionDataSourceProperties(config, "jdbcInterceptors", "ConnectionState");
-        addProductionDataSourceProperties(config, "defaultTransactionIsolation", 2);
-
         final Map<String, Object> additionalConfig = dbFeature.getAdditionalConfig();
         if (!additionalConfig.isEmpty()) {
             config.putAll(additionalConfig);
