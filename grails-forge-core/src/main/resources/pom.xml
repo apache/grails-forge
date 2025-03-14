@@ -58,7 +58,7 @@
             <!-- use version from https://github.com/grails/grails-core/blob/7.0.x/gradle.properties-->
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-http-client</artifactId>
-            <version>4.6.5</version>
+            <version>4.8.7</version>
         </dependency>
         <dependency>
             <!-- use version from https://github.com/grails/grails-core/blob/7.0.x/gradle.properties-->
