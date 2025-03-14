@@ -81,15 +81,15 @@ public class HibernateGorm extends GormFeature implements DatabaseDriverConfigur
 
         generatorContext.addBuildscriptDependency(Dependency.builder()
                 .groupId("org.grails.plugins")
-                .lookupArtifactId("hibernate5")
+                .artifactId("hibernate5")
                 .buildSrc());
         generatorContext.addDependency(Dependency.builder()
                 .groupId("org.grails.plugins")
                 .artifactId("hibernate5")
                 .implementation());
         generatorContext.addDependency(Dependency.builder()
-                .groupId("org.apache.tomcat")
-                .artifactId("tomcat-jdbc")
+                .groupId("com.zaxxer")
+                .artifactId("HikariCP")
                 .runtimeOnly());
     }
 

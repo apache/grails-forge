@@ -27,7 +27,7 @@ class AssetPipelineSpec extends ApplicationContextSpec implements CommandOutputF
                 .render()
 
         then:
-        template.contains("id \"com.bertramlabs.asset-pipeline\"")
+        template.contains("apply plugin: \"asset-pipeline\"")
         template.contains("runtimeOnly \"com.bertramlabs.plugins:asset-pipeline-grails\"")
         template.contains('''
 assets {
