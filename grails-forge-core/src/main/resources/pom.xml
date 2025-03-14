@@ -13,26 +13,31 @@
     </repositories>
     <dependencies>
         <dependency>
+            <groupId>org.grails.plugins</groupId>
+            <artifactId>grails-web-console</artifactId>
+            <version>7.0.0-M2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.grails.plugins</groupId>
+            <artifactId>quartz</artifactId>
+            <version>4.0.0-M2</version>
+        </dependency>
+        <dependency>
             <!-- Last released Feb 24, 2021 -->
             <groupId>org.grails.plugins</groupId>
             <artifactId>cache-ehcache</artifactId>
             <version>3.0.0</version>
         </dependency>
         <dependency>
+            <!-- Last released Oct 17, 2022 -->
             <groupId>org.grails.plugins</groupId>
-            <artifactId>quartz</artifactId>
-            <version>4.0.0-SNAPSHOT</version>
+            <artifactId>embedded-mongodb</artifactId>
+            <version>2.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.asciidoctor.jvm.convert</groupId>
             <artifactId>asciidoctor-gradle-jvm</artifactId>
             <version>4.0.4</version>
-        </dependency>
-        <dependency>
-            <!-- Last released Oct 17, 2022 -->
-            <groupId>org.grails.plugins</groupId>
-            <artifactId>embedded-mongodb</artifactId>
-            <version>2.0.1</version>
         </dependency>
         <dependency>
             <groupId>com.github.johnrengelman.shadow</groupId>
@@ -50,11 +55,13 @@
             <version>1.2.1</version>
         </dependency>
         <dependency>
+            <!-- use version from https://github.com/grails/grails-core/blob/7.0.x/gradle.properties-->
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-http-client</artifactId>
-            <version>4.6.6</version>
+            <version>4.6.5</version>
         </dependency>
         <dependency>
+            <!-- use version from https://github.com/grails/grails-core/blob/7.0.x/gradle.properties-->
             <groupId>io.micronaut.serde</groupId>
             <artifactId>micronaut-serde-jackson</artifactId>
             <version>2.14.0</version>

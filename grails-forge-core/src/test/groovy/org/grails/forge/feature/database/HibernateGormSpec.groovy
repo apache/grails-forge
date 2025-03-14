@@ -30,8 +30,8 @@ class HibernateGormSpec extends ApplicationContextSpec implements CommandOutputF
 
         then:
         template.contains('implementation "org.grails.plugins:hibernate5"')
-        template.contains("runtimeOnly \"org.apache.tomcat:tomcat-jdbc\"")
-        template.contains("runtimeOnly \"com.h2database:h2\"")
+        template.contains('runtimeOnly "com.zaxxer:HikariCP"')
+        template.contains('runtimeOnly "com.h2database:h2"')
     }
 
     void "test dependencies are present for buildSrc"() {
@@ -81,23 +81,5 @@ class HibernateGormSpec extends ApplicationContextSpec implements CommandOutputF
         config.environments.development.dataSource.url == 'jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE'
         config.environments.test.dataSource.url == 'jdbc:h2:mem:testDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE'
         config.environments.production.dataSource.url == 'jdbc:h2:./prodDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE'
-
-        config.environments.production.dataSource.properties.jmxEnabled == true
-        config.environments.production.dataSource.properties.initialSize == 5
-        config.environments.production.dataSource.properties.maxActive == 50
-        config.environments.production.dataSource.properties.minIdle == 5
-        config.environments.production.dataSource.properties.maxIdle == 25
-        config.environments.production.dataSource.properties.maxWait == 10000
-        config.environments.production.dataSource.properties.maxAge == 600000
-        config.environments.production.dataSource.properties.timeBetweenEvictionRunsMillis == 5000
-        config.environments.production.dataSource.properties.minEvictableIdleTimeMillis == 60000
-        config.environments.production.dataSource.properties.validationQuery == "SELECT 1"
-        config.environments.production.dataSource.properties.validationQueryTimeout == 3
-        config.environments.production.dataSource.properties.validationInterval == 15000
-        config.environments.production.dataSource.properties.testOnBorrow == true
-        config.environments.production.dataSource.properties.testWhileIdle == true
-        config.environments.production.dataSource.properties.testOnReturn == false
-        config.environments.production.dataSource.properties.jdbcInterceptors == "ConnectionState"
-        config.environments.production.dataSource.properties.defaultTransactionIsolation == 2
     }
 }

@@ -25,11 +25,8 @@ import org.grails.forge.build.gradle.GradlePlugin;
 import org.grails.forge.feature.Category;
 import org.grails.forge.feature.DefaultFeature;
 import org.grails.forge.feature.Feature;
-import org.grails.forge.feature.assetPipeline.templates.assetPipelineExtension;
 import org.grails.forge.options.Options;
-import org.grails.forge.template.RockerWritable;
 import org.grails.forge.template.URLTemplate;
-import org.grails.forge.util.VersionInfo;
 
 import java.util.Set;
 
@@ -61,13 +58,13 @@ public class AssetPipeline implements DefaultFeature {
 
     @Override
     public void apply(GeneratorContext generatorContext) {
-        generatorContext.addBuildPlugin(GradlePlugin.builder()
-                .id("com.bertramlabs.asset-pipeline")
-                .extension(new RockerWritable(assetPipelineExtension.template(generatorContext.getApplicationType())))
-                .version("$assetPipelineGradleVersion")
-                .build());
 
-        generatorContext.getBuildProperties().put("assetPipelineGradleVersion", VersionInfo.getBomVersion("asset-pipeline-gradle"));
+        generatorContext.addBuildscriptDependency(Dependency.builder()
+                .groupId("com.bertramlabs.plugins")
+                .artifactId("asset-pipeline-gradle")
+                .buildSrc());
+
+        generatorContext.addBuildPlugin(GradlePlugin.builder().id("asset-pipeline").useApplyPlugin(true).build());
 
         generatorContext.addDependency(Dependency.builder()
                 .groupId("com.bertramlabs.plugins")
