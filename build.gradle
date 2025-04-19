@@ -6,11 +6,11 @@ plugins {
 version project.projectVersion
 group "org.apache.grails.forge"
 
-def ossUser = System.getenv("SONATYPE_USERNAME") ?: rootProject.hasProperty("sonatypeOssUsername") ? project.sonatypeOssUsername : ''
-def ossPass = System.getenv("SONATYPE_PASSWORD") ?: rootProject.hasProperty("sonatypeOssPassword") ? project.sonatypeOssPassword : ''
+def ossUser = System.getenv("MAVEN_PUBLISH_USERNAME")
+def ossPass = System.getenv("MAVEN_PUBLISH_PASSWORD")
 def ossStagingProfileId = System.getenv("SONATYPE_STAGING_PROFILE_ID") ?: project.hasProperty("sonatypeOssStagingProfileId") ? project.sonatypeOssStagingProfileId : ''
 
-if (!ossUser.isEmpty() && !ossPass.isEmpty()) {
+if (!ossUser?.isEmpty() && !ossPass?.isEmpty()) {
     String version = String.valueOf(rootProject.getVersion());
     if ("unspecified".equals(version)) {
         throw new RuntimeException("The root project doesn't define a version. Please set the version in the root project.");
@@ -23,7 +23,7 @@ if (!ossUser.isEmpty() && !ossPass.isEmpty()) {
                 password = ossPass
                 stagingProfileId = ossStagingProfileId
                 nexusUrl = uri("https://s01.oss.sonatype.org/service/local/")
-                snapshotRepositoryUrl = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+                snapshotRepositoryUrl = uri(System.getenv('MAVEN_PUBLISH_URL') ?: 'https://repository.apache.org/content/repositories/snapshots')
             }
         }
     }

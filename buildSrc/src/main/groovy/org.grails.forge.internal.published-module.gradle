@@ -11,8 +11,8 @@ ext."signing.keyId" = project.hasProperty("signing.keyId") ? project.getProperty
 ext."signing.secretKeyRingFile" = project.hasProperty("signing.secretKeyRingFile") ? project.getProperty('signing.secretKeyRingFile') : "${System.properties['user.home']}${File.separator}.gnupg${File.separator}secring.gpg"
 ext."signing.password" = project.hasProperty("signing.password") ? project.getProperty('signing.password') : System.getenv('SIGNING_PASSPHRASE')
 
-def ossUser = System.getenv("SONATYPE_USERNAME") ?: project.hasProperty("sonatypeOssUsername") ? project.sonatypeOssUsername : ''
-def ossPass = System.getenv("SONATYPE_PASSWORD") ?: project.hasProperty("sonatypeOssPassword") ? project.sonatypeOssPassword : ''
+def ossUser = System.getenv("MAVEN_PUBLISH_USERNAME")
+def ossPass = System.getenv("MAVEN_PUBLISH_PASSWORD")
 def ossStagingProfileId = System.getenv("SONATYPE_STAGING_PROFILE_ID") ?: project.hasProperty("sonatypeOssStagingProfileId") ? project.sonatypeOssStagingProfileId : ''
 
 ext.pomInfo = {
