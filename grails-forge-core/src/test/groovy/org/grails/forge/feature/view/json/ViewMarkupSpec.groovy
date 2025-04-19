@@ -54,7 +54,7 @@ class ViewMarkupSpec extends ApplicationContextSpec implements CommandOutputFixt
         build.contains("apply plugin: \"org.apache.grails.gradle.grails-web\"")
         build.contains("implementation \"org.apache.grails.gradle:grails-markup\"")
         !build.contains("apply plugin: \"org.apache.grails.gradle.grails-gson\"")
-        !build.contains("implementation \"org.apache.grails:rails-views-gson\"")
+        !build.contains("implementation \"org.apache.grails:grails-views-gson\"")
         !build.contains("implementation \"org.apache.grails:grails-testing-support-views-gson\"")
 
         where:

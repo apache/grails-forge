@@ -73,7 +73,7 @@ class ViewJsonSpec extends ApplicationContextSpec implements CommandOutputFixtur
 
         then:
         !build.contains("apply plugin: \"org.apache.grails.gradle.grails-gson\"")
-        !build.contains("implementation \"org.apache.grails:rails-views-gson\"")
+        !build.contains("implementation \"org.apache.grails:grails-views-gson\"")
         !build.contains("implementation \"org.apache.grails:grails-data-mongodb-gson-templates\"")
         !build.contains("testImplementation \"org.apache.grails:grails-testing-support-views-gson\"")
 
