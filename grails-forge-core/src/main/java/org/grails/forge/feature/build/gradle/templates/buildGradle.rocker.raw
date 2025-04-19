@@ -26,8 +26,9 @@ GradleBuild gradleBuild
 @if (!features.contains("gradle-build-src") && !gradleBuild.getBuildscriptDependencies().isEmpty()) {
 buildscript {
     repositories {
-        maven { url "https://repo.grails.org/grails/core" }
         mavenCentral()
+        maven { url "https://repository.apache.org/content/groups/snapshots/" }
+        maven { url "https://repo.grails.org/grails/core" }
     }
     dependencies { // Not Published to Gradle Plugin Portal
     @for (GradleDependency dependency : gradleBuild.getBuildscriptDependencies()) {
@@ -67,7 +68,8 @@ apply from: "gradle/asciidoc.gradle"
 
 repositories {
     mavenCentral()
-    maven { url "https://repo.grails.org/grails/core/" }
+    maven { url "https://repository.apache.org/content/groups/snapshots/" }
+    maven { url "https://repo.grails.org/grails/core" }
 }
 
 @dependencies.template(applicationType, project, features, gradleBuild)
