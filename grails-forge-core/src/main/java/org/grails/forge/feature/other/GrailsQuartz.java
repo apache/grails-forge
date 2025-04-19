@@ -46,8 +46,8 @@ public class GrailsQuartz implements Feature {
     public void apply(GeneratorContext generatorContext) {
         generatorContext.getConfiguration().put("quartz.autoStartup", true);
         generatorContext.addDependency(Dependency.builder()
-                .groupId("org.grails.plugins")
-                .lookupArtifactId("quartz")
+                .groupId("org.apache.grails")
+                .lookupArtifactId("grails-quartz")
                 .implementation());
     }
 

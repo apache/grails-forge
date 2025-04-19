@@ -92,8 +92,8 @@ public class GebWithTestcontainers implements DefaultFeature {
     @Override
     public void apply(GeneratorContext generatorContext) {
         generatorContext.addDependency(Dependency.builder()
-                .groupId("org.grails.plugins")
-                .artifactId("geb")
+                .groupId("org.apache.grails")
+                .artifactId("grails-geb")
                 .integrationTestImplementationTestFixtures());
 
         Project project = generatorContext.getProject();

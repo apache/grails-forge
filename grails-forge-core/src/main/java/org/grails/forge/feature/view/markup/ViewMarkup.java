@@ -68,19 +68,9 @@ public class ViewMarkup extends GrailsViews implements Feature {
         config.put("grails.mime.types.text", "text/plain");
         config.put("grails.mime.types.all", "*/*");
 
-        generatorContext.addBuildscriptDependency(Dependency.builder()
-                .groupId("org.grails.plugins")
-                .artifactId("views-gradle")
-                .buildSrc());
-
-        generatorContext.addBuildPlugin(GradlePlugin.builder()
-                .id("org.grails.plugins.views-markup")
-                .useApplyPlugin(true)
-                .build());
-
         generatorContext.addDependency(Dependency.builder()
-                .groupId("org.grails.plugins")
-                .artifactId("views-markup")
+                .groupId("org.apache.grails.gradle")
+                .artifactId("grails-markup")
                 .implementation());
 
         generatorContext.addTemplate("application_index_gml", new RockerTemplate(getViewFolderPath() + "application/index.gml", index.template()));
