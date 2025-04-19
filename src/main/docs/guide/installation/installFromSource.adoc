@@ -10,17 +10,17 @@ $ git clone https://github.com/grails/grails-forge.git
 
 [source,bash]
 ----
-$ ./gradlew grails-cli:assembleDist
+$ ./gradlew grails-forge-cli:assembleDist
 ----
 
-This will create a zip distribution of the CLI (named with the current version) in the `grails-cli/build/distributions/` folder.
+This will create a zip distribution of the CLI (named with the current version) in the `grails-forge-cli/build/distributions/` folder.
 
 You'll need to unzip this somewhere convenient. For example, to unzip it to a dot directory in your user home, you could do:
 
 [source,bash]
 ----
 $ mkdir ~/.grails
-$ unzip grails-cli/build/distributions/grails-cli-VERSION.zip -d ~/.grails
+$ unzip grails-forge-cli/build/distributions/grails-forge-cli-VERSION.zip -d ~/.grails
 ----
 
 In your shell profile (`~/.bash_profile` if you are using the Bash shell), export the `GRAILS_HOME` directory (wherever you unzipped it to) and add the CLI path to your `PATH`:

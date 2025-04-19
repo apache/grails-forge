@@ -32,9 +32,9 @@ jobs:
       - name: "✅ Verify CLI"
         if: success()
         run: |
-          cp grails-cli/build/distributions/grails-cli-*.zip cli.zip
+          cp grails-forge-cli/build/distributions/grails-forge-cli-*.zip cli.zip
           unzip cli -d tmp
-          mv tmp/grails-cli-* tmp/cli
+          mv tmp/grails-forge-cli-* tmp/cli
           ./tmp/cli/bin/grails --version
       - name: "📤 Publish to Sonatype OSSRH"
         id: publish
@@ -62,17 +62,17 @@ jobs:
         with:
           develocity-access-key: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
       - name: "📸 Build the Native Image"
-        run: ./gradlew grails-cli:nativeCompile --no-daemon
+        run: ./gradlew grails-forge-cli:nativeCompile --no-daemon
       - name: "✅ Verify Build"
-        run: ./grails-cli/build/native/nativeCompile/grails --version
+        run: ./grails-forge-cli/build/native/nativeCompile/grails --version
       - name: "✅ Verify Create App"
-        run: ./grails-cli/build/native/nativeCompile/grails create-app test
+        run: ./grails-forge-cli/build/native/nativeCompile/grails create-app test
       - name: "📦 Package Build"
         env:
           VERSION: ${{ github.event.release.tag_name }}
         run: |
           mkdir -p grails-linux-amd64-snapshot/bin
-          mv ./grails-cli/build/native/nativeCompile/grails grails-linux-amd64-snapshot/bin
+          mv ./grails-forge-cli/build/native/nativeCompile/grails grails-linux-amd64-snapshot/bin
           cp ./LICENSE grails-linux-amd64-snapshot/
           zip -r grails-linux-amd64-snapshot.zip ./grails-linux-amd64-snapshot
       - name: "📤 Upload Artifact to Workflow Summary Page"
@@ -100,17 +100,17 @@ jobs:
         with:
           develocity-access-key: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
       - name: "📸 Build the Native Image"
-        run: ./gradlew grails-cli:nativeCompile --no-daemon
+        run: ./gradlew grails-forge-cli:nativeCompile --no-daemon
       - name: "✅ Verify Build"
-        run: ./grails-cli/build/native/nativeCompile/grails --version
+        run: ./grails-forge-cli/build/native/nativeCompile/grails --version
       - name: "✅ Verify Create App"
-        run: ./grails-cli/build/native/nativeCompile/grails create-app test
+        run: ./grails-forge-cli/build/native/nativeCompile/grails create-app test
       - name: "📦 Package Build"
         env:
           VERSION: ${{ github.event.release.tag_name }}
         run: |
           mkdir -p grails-darwin-amd64-snapshot/bin
-          mv ./grails-cli/build/native/nativeCompile/grails grails-darwin-amd64-snapshot/bin
+          mv ./grails-forge-cli/build/native/nativeCompile/grails grails-darwin-amd64-snapshot/bin
           cp ./LICENSE grails-darwin-amd64-snapshot/
           zip -r grails-darwin-amd64-snapshot.zip ./grails-darwin-amd64-snapshot -x '*.DS_Store*' -x '__MAC_OSX'
       - name: "📤 Upload Artifact to Workflow Summary Page"
@@ -138,17 +138,17 @@ jobs:
         with:
           develocity-access-key: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
       - name: "📸 Build the Native Image"
-        run: ./gradlew grails-cli:nativeCompile --no-daemon
+        run: ./gradlew grails-forge-cli:nativeCompile --no-daemon
       - name: "✅ Verify Build"
-        run: ./grails-cli/build/native/nativeCompile/grails --version
+        run: ./grails-forge-cli/build/native/nativeCompile/grails --version
       - name: "✅ Verify Create App"
-        run: ./grails-cli/build/native/nativeCompile/grails create-app test
+        run: ./grails-forge-cli/build/native/nativeCompile/grails create-app test
       - name: "📦 Package Build"
         env:
           VERSION: ${{ github.event.release.tag_name }}
         run: |
           mkdir -p grails-darwin-aarch64-snapshot/bin
-          mv ./grails-cli/build/native/nativeCompile/grails grails-darwin-aarch64-snapshot/bin
+          mv ./grails-forge-cli/build/native/nativeCompile/grails grails-darwin-aarch64-snapshot/bin
           cp ./LICENSE grails-darwin-aarch64-snapshot/
           zip -r grails-darwin-aarch64-snapshot.zip grails-darwin-aarch64-snapshot/ -x '*.DS_Store*' -x '__MAC_OSX'
       - name: "📤 Upload Artifact to Workflow Summary Page"
@@ -176,23 +176,23 @@ jobs:
         with:
           develocity-access-key: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
       - name: "📸 Build the Native Image"
-        run: ./gradlew grails-cli:nativeCompile --no-daemon
+        run: ./gradlew grails-forge-cli:nativeCompile --no-daemon
       - name: "✅ Verify Build (Powershell)"
         shell: powershell
-        run: ./grails-cli/build/native/nativeCompile/grails.exe --version
+        run: ./grails-forge-cli/build/native/nativeCompile/grails.exe --version
       - name: "✅ Verify Create App (Powershell)"
         shell: powershell
-        run: ./grails-cli/build/native/nativeCompile/grails.exe create-app test
+        run: ./grails-forge-cli/build/native/nativeCompile/grails.exe create-app test
       - name: "✅ Verify Build (CMD)"
         shell: cmd
-        run: grails-cli\\build\\native\\nativeCompile\\grails --version
+        run: grails-forge-cli\\build\\native\\nativeCompile\\grails --version
       - name: "✅ Verify Create App (CMD)"
         shell: cmd
-        run: grails-cli\\build\\native\\nativeCompile\\grails create-app test2
+        run: grails-forge-cli\\build\\native\\nativeCompile\\grails create-app test2
       - name: "📦 ZIP Archive"
         run: |
           New-Item "./grails-win-amd64-snapshot/bin" -ItemType Directory -ea 0
-          Move-Item -Path ./grails-cli/build/native/nativeCompile/grails.exe -Destination "./grails-win-amd64-snapshot/bin"
+          Move-Item -Path ./grails-forge-cli/build/native/nativeCompile/grails.exe -Destination "./grails-win-amd64-snapshot/bin"
           Copy-Item "./LICENSE" -Destination "./grails-win-amd64-snapshot"
           Compress-Archive -Path "./grails-win-amd64-snapshot" -Update -DestinationPath ./grails-win-amd64-snapshot.zip
       - name: "📤 Upload Artifact to Workflow Summary Page"

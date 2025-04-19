@@ -33,7 +33,7 @@ jobs:
           RELEASE_VERSION: ${{ needs.publish.outputs.release_version }}
           RELEASE_SCRIPT_PATH: '.github/scripts/setReleasedGrailsVersion.sh'
       - name: "🔨 Build All"
-        run: ./gradlew grails-cli:assemble
+        run: ./gradlew grails-forge-cli:assemble
       - name: "🔐 Generate secring file"
         env:
           SECRING_FILE: ${{ secrets.SECRING_FILE }}
@@ -59,8 +59,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: grails-cli/build/distributions/grails-cli-${{ steps.release_version.outputs.value }}.zip
-          asset_name: grails-cli-${{ steps.release_version.outputs.value }}.zip
+          asset_path: grails-forge-cli/build/distributions/grails-forge-cli-${{ steps.release_version.outputs.value }}.zip
+          asset_name: grails-forge-cli-${{ steps.release_version.outputs.value }}.zip
           asset_content_type: application/zip
       - name: "🚀 Publish to Github Pages"
         if: success()
@@ -94,17 +94,17 @@ jobs:
       - name: "🐘 Setup Gradle"
         uses: gradle/actions/setup-gradle@v4
       - name: "📸 Build the Native Image"
-        run: ./gradlew grails-cli:nativeCompile --no-daemon
+        run: ./gradlew grails-forge-cli:nativeCompile --no-daemon
       - name: "✅ Verify Build"
-        run: ./grails-cli/build/native/nativeCompile/grails --version
+        run: ./grails-forge-cli/build/native/nativeCompile/grails --version
       - name: "✅ Verify Create App"
-        run: ./grails-cli/build/native/nativeCompile/grails create-app test
+        run: ./grails-forge-cli/build/native/nativeCompile/grails create-app test
       - name: "📦 Package Build"
         env:
           VERSION: ${{ github.event.release.tag_name }}
         run: |
           mkdir -p "grails-linux-amd64-${VERSION}/bin"
-          mv ./grails-cli/build/native/nativeCompile/grails "grails-linux-amd64-${VERSION}/bin"
+          mv ./grails-forge-cli/build/native/nativeCompile/grails "grails-linux-amd64-${VERSION}/bin"
           cp ./LICENSE "grails-linux-amd64-${VERSION}/"
           zip -r "grails-linux-amd64-${VERSION}.zip" "grails-linux-amd64-${VERSION}/"
       - name: "📤 Upload Release Asset"
@@ -138,17 +138,17 @@ jobs:
         with:
           develocity-access-key: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
       - name: "📸 Build the Native Image"
-        run: ./gradlew grails-cli:nativeCompile --no-daemon
+        run: ./gradlew grails-forge-cli:nativeCompile --no-daemon
       - name: "✅ Verify Build"
-        run: ./grails-cli/build/native/nativeCompile/grails --version
+        run: ./grails-forge-cli/build/native/nativeCompile/grails --version
       - name: "✅ Verify Create App"
-        run: ./grails-cli/build/native/nativeCompile/grails create-app test
+        run: ./grails-forge-cli/build/native/nativeCompile/grails create-app test
       - name: "📦 Package Build"
         env:
           VERSION: ${{ github.event.release.tag_name }}
         run: |
           mkdir -p "grails-darwin-amd64-${VERSION}/bin"
-          mv ./grails-cli/build/native/nativeCompile/grails "grails-darwin-amd64-${VERSION}/bin"
+          mv ./grails-forge-cli/build/native/nativeCompile/grails "grails-darwin-amd64-${VERSION}/bin"
           cp ./LICENSE "grails-darwin-amd64-${VERSION}/"
           zip -r "grails-darwin-amd64-${VERSION}.zip" "grails-darwin-amd64-${VERSION}/" -x '*.DS_Store*' -x '__MAC_OSX'
       - name: "📤 Upload Release Asset"
@@ -182,17 +182,17 @@ jobs:
         with:
           develocity-access-key: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
       - name: "📸 Build the Native Image"
-        run: ./gradlew grails-cli:nativeCompile --no-daemon
+        run: ./gradlew grails-forge-cli:nativeCompile --no-daemon
       - name: "✅ Verify Build"
-        run: ./grails-cli/build/native/nativeCompile/grails --version
+        run: ./grails-forge-cli/build/native/nativeCompile/grails --version
       - name: "✅ Verify Create App"
-        run: ./grails-cli/build/native/nativeCompile/grails create-app test
+        run: ./grails-forge-cli/build/native/nativeCompile/grails create-app test
       - name: "📦 Package Build"
         env:
           VERSION: ${{ github.event.release.tag_name }}
         run: |
           mkdir -p "grails-darwin-aarch64-${VERSION}/bin"
-          mv ./grails-cli/build/native/nativeCompile/grails "grails-darwin-aarch64-${VERSION}/bin"
+          mv ./grails-forge-cli/build/native/nativeCompile/grails "grails-darwin-aarch64-${VERSION}/bin"
           cp ./LICENSE "grails-darwin-aarch64-${VERSION}/"
           zip -r "grails-darwin-aarch64-${VERSION}.zip" "grails-darwin-aarch64-${VERSION}/" -x '*.DS_Store*' -x '__MAC_OSX'
       - name: "📤 Upload Release Asset"
@@ -226,23 +226,23 @@ jobs:
         with:
           develocity-access-key: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
       - name: "📸 Build the Native Image"
-        run: ./gradlew grails-cli:nativeCompile --no-daemon
+        run: ./gradlew grails-forge-cli:nativeCompile --no-daemon
       - name: "✅ Verify Build (Powershell)"
         shell: powershell
-        run: ./grails-cli/build/native/nativeCompile/grails.exe --version
+        run: ./grails-forge-cli/build/native/nativeCompile/grails.exe --version
       - name: "✅ Verify Create App (Powershell)"
         shell: powershell
-        run: ./grails-cli/build/native/nativeCompile/grails.exe create-app test
+        run: ./grails-forge-cli/build/native/nativeCompile/grails.exe create-app test
       - name: "✅ Verify Build (CMD)"
         shell: cmd
-        run: grails-cli\\build\\native\\nativeCompile\\grails --version
+        run: grails-forge-cli\\build\\native\\nativeCompile\\grails --version
       - name: "✅ Verify Create App (CMD)"
         shell: cmd
-        run: grails-cli\\build\\native\\nativeCompile\\grails create-app test2
+        run: grails-forge-cli\\build\\native\\nativeCompile\\grails create-app test2
       - name: "📦 ZIP Archive"
         run: |
           New-Item ./grails-win-amd64-${{ github.event.release.tag_name }}/bin -ItemType Directory -ea 0
-          Move-Item -Path ./grails-cli/build/native/nativeCompile/grails.exe -Destination ./grails-win-amd64-${{ github.event.release.tag_name }}/bin
+          Move-Item -Path ./grails-forge-cli/build/native/nativeCompile/grails.exe -Destination ./grails-win-amd64-${{ github.event.release.tag_name }}/bin
           Copy-Item ./LICENSE -Destination ./grails-win-amd64-${{ github.event.release.tag_name }}
           Compress-Archive -Path ./grails-win-amd64-${{ github.event.release.tag_name }} -Update -DestinationPath ./grails-win-amd64-${{ github.event.release.tag_name }}.zip
       - name: "📤 Upload Release Asset"

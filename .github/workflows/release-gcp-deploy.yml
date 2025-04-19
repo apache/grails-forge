@@ -29,7 +29,7 @@ jobs:
         with:
           develocity-access-key: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
       - name: "🔨 Build All"
-        run: ./gradlew grails-cli:assemble
+        run: ./gradlew grails-forge-cli:assemble
   deploy:
     name: "Deploy To Google Cloud Run"
     runs-on: ubuntu-latest

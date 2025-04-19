@@ -15,7 +15,7 @@ configurations {
 }
 
 dependencies {
-    asciidocs project(path: ':grails-cli', configuration: 'asciidocPages')
+    asciidocs project(path: ':grails-forge-cli', configuration: 'asciidocPages')
 }
 
 tasks.named('publishGuide') {

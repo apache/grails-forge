@@ -28,7 +28,7 @@ configurations {
 dependencies {
 //    testImplementation project(":test-utils")
     testImplementation project(":grails-forge-core")
-    testImplementation project(":grails-cli")
+    testImplementation project(":grails-forge-cli")
     testImplementation "ch.qos.logback:logback-classic:$logbackClassicVersion"
     testImplementation "io.micronaut.picocli:micronaut-picocli"
     implementation "io.micronaut:micronaut-inject-groovy:$micronautVersion"
