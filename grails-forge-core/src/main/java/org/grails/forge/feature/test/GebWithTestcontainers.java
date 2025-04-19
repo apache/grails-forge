@@ -74,7 +74,7 @@ public class GebWithTestcontainers implements DefaultFeature {
 
     @Override
     public String getDocumentation() {
-        return "https://github.com/grails/geb#readme";
+        return "https://github.com/apache/grails-geb#readme";
     }
 
     @Override

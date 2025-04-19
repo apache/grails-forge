@@ -63,7 +63,7 @@ public class GrailsQuartz implements Feature {
 
     @Override
     public String getDocumentation() {
-        return "https://grails-plugins.github.io/grails-quartz/latest/guide/index.html";
+        return "https://apache.github.io/grails-quartz/latest/";
     }
 
 }

@@ -66,7 +66,7 @@ public class GrailsCache implements Feature {
 
     @Override
     public String getDocumentation() {
-        return "https://grails-plugins.github.io/grails-cache/latest/guide/index.html";
+        return "https://docs.grails.org/";
     }
 
 }
