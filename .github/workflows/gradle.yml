@@ -28,7 +28,7 @@ jobs:
           develocity-access-key: ${{ secrets.GRAILS_DEVELOCITY_ACCESS_KEY }}
       - name: "🔨 Run Build"
         id: build
-        run: ./gradlew build --refresh-dependencies
+        run: ./gradlew build
       - name: "✅ Verify CLI"
         if: success()
         run: |
