@@ -28,7 +28,7 @@ class ViewMarkupSpec extends ApplicationContextSpec implements CommandOutputFixt
 
         then:
         template.contains("apply plugin: \"org.apache.grails.gradle.grails-web\"")
-        template.contains("implementation \"org.apache.grails:grails-gradle-plugins\"")
+        template.contains("implementation \"org.apache.grails:grails-views-markup\"")
         !template.contains("apply plugin: \"org.apache.grails.gradle.grails-gson\"")
     }
 
@@ -52,7 +52,7 @@ class ViewMarkupSpec extends ApplicationContextSpec implements CommandOutputFixt
 
         then:
         build.contains("apply plugin: \"org.apache.grails.gradle.grails-web\"")
-        build.contains("implementation \"org.apache.grails:grails-gradle-plugins\"")
+        build.contains("implementation \"org.apache.grails:grails-views-markup\"")
         !build.contains("apply plugin: \"org.apache.grails.gradle.grails-gson\"")
         !build.contains("implementation \"org.apache.grails:grails-views-gson\"")
         !build.contains("implementation \"org.apache.grails:grails-testing-support-views-gson\"")
