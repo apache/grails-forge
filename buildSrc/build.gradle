@@ -1,6 +1,7 @@
 plugins {
     id "java-gradle-plugin"
     id "groovy-gradle-plugin"
+    id "org.gradle.test-retry" version "1.6.2"
 }
 
 Properties properties = new Properties()
