@@ -17,7 +17,7 @@ class GrailsBaseSpec extends BeanContextSpec implements CommandOutputFixture {
 
         then:
         buildGradle.contains("implementation \"org.apache.grails:grails-core\"")
-        buildGradle.contains("implementation \"org.apache.grails.web:grails-web-boot\"")
+        buildGradle.contains("implementation \"org.apache.grails:grails-web-boot\"")
         buildGradle.contains("implementation \"org.apache.grails:grails-logging\"")
     }
 

@@ -72,7 +72,7 @@ public class GrailsBase implements DefaultFeature {
                 .artifactId("grails-core")
                 .implementation());
         generatorContext.addDependency(Dependency.builder()
-                .groupId("org.apache.grails.web")
+                .groupId("org.apache.grails")
                 .artifactId("grails-web-boot")
                 .implementation());
         generatorContext.addDependency(Dependency.builder()
