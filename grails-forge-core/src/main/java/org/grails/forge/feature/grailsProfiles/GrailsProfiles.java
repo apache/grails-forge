@@ -64,9 +64,8 @@ public class GrailsProfiles implements DefaultFeature {
 
         config.put("grails.profile", profile);
 
-        // TODO: Update after profiles are published to ASF snapshot repo
         generatorContext.addDependency(Dependency.builder()
-                .groupId("org.grails.profiles")
+                .groupId("org.apache.grails.profiles")
                 .artifactId(profile)
                 .scope(Scope.PROFILE));
     }
