@@ -1,7 +1,6 @@
 plugins {
     id "java-gradle-plugin"
     id "groovy-gradle-plugin"
-    id "org.gradle.test-retry" version "1.6.2"
 }
 
 Properties properties = new Properties()
@@ -33,6 +32,7 @@ dependencies {
     implementation "io.spring.nohttp:nohttp-gradle:$nohttpGradleVersion"
     implementation "gradle.plugin.com.github.johnrengelman:shadow:$shadowVersion"
     implementation "io.github.gradle-nexus:publish-plugin:$nexusPublishVersion"
+    implementation "org.gradle.test-retry:org.gradle.test-retry.gradle.plugin:$testRetryVersion"
 }
 
 gradlePlugin {
