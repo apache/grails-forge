@@ -105,7 +105,7 @@ public class CodeGenConfig {
 
         File grailsCli = new File(directory, "grails-forge-cli.yml");
 
-        if(!grailsCli.exists()) {
+        if (!grailsCli.exists()) {
             // backwards compatibility for grails-cli.yml
             grailsCli = new File(directory, "grails-cli.yml");
         }
