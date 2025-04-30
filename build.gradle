@@ -1,33 +1,9 @@
 plugins {
-    id "io.github.gradle-nexus.publish-plugin"
     id "org.grails.forge.internal.aggregator"
 }
 
 version project.projectVersion
 group "org.apache.grails.forge"
-
-def ossUser = System.getenv("MAVEN_PUBLISH_USERNAME")
-def ossPass = System.getenv("MAVEN_PUBLISH_PASSWORD")
-def ossStagingProfileId = System.getenv("SONATYPE_STAGING_PROFILE_ID") ?: project.hasProperty("sonatypeOssStagingProfileId") ? project.sonatypeOssStagingProfileId : ''
-
-if (!ossUser?.isEmpty() && !ossPass?.isEmpty()) {
-    String version = String.valueOf(rootProject.getVersion());
-    if ("unspecified".equals(version)) {
-        throw new RuntimeException("The root project doesn't define a version. Please set the version in the root project.");
-    }
-    nexusPublishing {
-        repositories {
-            sonatype {
-                allowInsecureProtocol = rootProject.hasProperty("allowInsecurePublishing")
-                username = ossUser
-                password = ossPass
-                stagingProfileId = ossStagingProfileId
-                nexusUrl = uri("https://s01.oss.sonatype.org/service/local/")
-                snapshotRepositoryUrl = uri(System.getenv('MAVEN_PUBLISH_URL') ?: 'https://repository.apache.org/content/repositories/snapshots')
-            }
-        }
-    }
-}
 
 // buildSrc tests fail occasionally without running clean first
 build {

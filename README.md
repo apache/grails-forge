@@ -47,9 +47,7 @@ See the [Snapshot Documentation](https://grails.github.io/grails-forge/snapshot/
 
 ## Snapshots and Releases
 
-Snapshots are automatically published to [Apache Snapshot Repo](https://repository.apache.org/content/groups/snapshots/org/apache/grails/forge/) using [Github Actions](https://github.com/apache/grails-forge/actions).
-
-Releases are published to Maven Central via [Github Actions](https://github.com/apache/grails-forge/actions).
+Releases are published to SDKMan via [Github Actions](https://github.com/apache/grails-forge/actions).
 
 A release is performed with the following steps:
 

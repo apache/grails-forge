@@ -36,14 +36,6 @@ jobs:
           unzip cli -d tmp
           mv tmp/grails-forge-cli-* tmp/cli
           ./tmp/cli/bin/grails --version
-      - name: "📤 Publish to Apache Snapshot Repo"
-        id: publish
-        if: steps.build.outcome == 'success' && github.event_name == 'push' && matrix.java == '17' && github.repository_owner == 'apache'
-        env:
-          MAVEN_PUBLISH_USERNAME: ${{ secrets.NEXUS_USER }}
-          MAVEN_PUBLISH_PASSWORD: ${{ secrets.NEXUS_PW  }}
-          MAVEN_PUBLISH_URL: ${{ secrets.GRAILS_NEXUS_PUBLISH_SNAPSHOT_URL }}
-        run: ./gradlew publishToSonatype
   linux:
     name: "Build Linux Native CLI"
     runs-on: ubuntu-latest
