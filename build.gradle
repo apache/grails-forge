@@ -1,4 +1,5 @@
 plugins {
+    id "io.github.gradle-nexus.publish-plugin"
     id "org.grails.forge.internal.aggregator"
 }
 

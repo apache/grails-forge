@@ -1,5 +1,7 @@
 plugins {
     id "org.grails.forge.internal.base-module"
+    id 'maven-publish'
+    id 'signing'
 }
 
 ExtraPropertiesExtension ext = extensions.getByType(ExtraPropertiesExtension)

@@ -31,6 +31,7 @@ dependencies {
     implementation "com.diffplug.spotless:spotless-plugin-gradle:$spotlessVersion"
     implementation "io.spring.nohttp:nohttp-gradle:$nohttpGradleVersion"
     implementation "gradle.plugin.com.github.johnrengelman:shadow:$shadowVersion"
+    implementation "io.github.gradle-nexus:publish-plugin:$nexusPublishVersion"
 }
 
 gradlePlugin {
