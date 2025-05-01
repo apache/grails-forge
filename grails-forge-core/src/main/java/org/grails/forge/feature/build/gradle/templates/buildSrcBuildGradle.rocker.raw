@@ -9,14 +9,16 @@
 ApplicationType applicationType,
 Project project,
 Features features,
-GradleBuild gradleBuild
+GradleBuild gradleBuild,
+String grailsVersion
 )
 
 @if(!gradleBuild.getBuildSrcDependencies().isEmpty()) {
 repositories {
     mavenCentral()
-    // TODO: only include on when grailsVersion is a snapshot
+@if (grailsVersion.endsWith("SNAPSHOT")) {
     maven { url "https://repository.apache.org/content/groups/snapshots/" }
+}
     maven { url "https://repo.grails.org/grails/core" }
 }
 dependencies {

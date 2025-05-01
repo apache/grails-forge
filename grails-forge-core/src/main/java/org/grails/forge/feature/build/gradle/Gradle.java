@@ -34,6 +34,7 @@ import org.grails.forge.options.BuildTool;
 import org.grails.forge.options.Options;
 import org.grails.forge.template.BinaryTemplate;
 import org.grails.forge.template.RockerTemplate;
+import org.grails.forge.util.VersionInfo;
 
 import java.util.Set;
 import java.util.function.Function;
@@ -77,7 +78,8 @@ public class Gradle implements BuildFeature {
                 generatorContext.getProject(),
                 coordinateResolver,
                 generatorContext.getFeatures(),
-                build
+                build,
+                VersionInfo.getGrailsVersion()
         )));
 
         configureDefaultGradleProps(generatorContext);

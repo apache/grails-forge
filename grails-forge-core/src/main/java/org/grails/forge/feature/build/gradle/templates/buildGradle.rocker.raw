@@ -17,7 +17,8 @@ ApplicationType applicationType,
 Project project,
 Function<String, Coordinate> coordinateResolver,
 Features features,
-GradleBuild gradleBuild
+GradleBuild gradleBuild,
+String grailsVersion
 )
 
 @seleniumVersion => {@coordinateResolver.apply("selenium-api").getVersion()}
@@ -27,8 +28,9 @@ GradleBuild gradleBuild
 buildscript {
     repositories {
         mavenCentral()
-        // TODO: only include on when grailsVersion is a snapshot
+@if (grailsVersion.endsWith("SNAPSHOT")) {
         maven { url "https://repository.apache.org/content/groups/snapshots/" }
+}
         maven { url "https://repo.grails.org/grails/core" }
     }
     dependencies { // Not Published to Gradle Plugin Portal
@@ -69,8 +71,9 @@ apply from: "gradle/asciidoc.gradle"
 
 repositories {
     mavenCentral()
-    // TODO: only include on when grailsVersion is a snapshot
+@if (grailsVersion.endsWith("SNAPSHOT")) {
     maven { url "https://repository.apache.org/content/groups/snapshots/" }
+}
     maven { url "https://repo.grails.org/grails/core" }
 }
 
