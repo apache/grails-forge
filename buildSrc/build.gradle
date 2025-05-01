@@ -31,7 +31,6 @@ dependencies {
     implementation "com.diffplug.spotless:spotless-plugin-gradle:$spotlessVersion"
     implementation "io.spring.nohttp:nohttp-gradle:$nohttpGradleVersion"
     implementation "gradle.plugin.com.github.johnrengelman:shadow:$shadowVersion"
-    implementation "org.gradle.test-retry:org.gradle.test-retry.gradle.plugin:$testRetryVersion"
 }
 
 gradlePlugin {

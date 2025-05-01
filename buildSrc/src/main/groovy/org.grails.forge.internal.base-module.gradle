@@ -5,7 +5,6 @@ plugins {
     id 'checkstyle'
     id 'groovy'
     id 'java-library'
-    id 'org.gradle.test-retry'
 }
 
 repositories {
