@@ -36,13 +36,6 @@ jobs:
           unzip cli -d tmp
           mv tmp/grails-cli-* tmp/cli
           ./tmp/cli/bin/grails --version
-      - name: "📤 Publish to Sonatype OSSRH"
-        id: publish
-        if: steps.build.outcome == 'success' && github.event_name == 'push' && matrix.java == '17'
-        env:
-          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
-          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
-        run: ./gradlew publishToSonatype
   linux:
     name: "Build Linux Native CLI"
     runs-on: ubuntu-latest
