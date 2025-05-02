@@ -50,6 +50,6 @@ javadoc {
 }
 
 repositories {
-    maven { url "https://repo.grails.org/grails/core" }
+    maven { url = 'https://repo.grails.org/grails/core' }
     mavenCentral()
 }
