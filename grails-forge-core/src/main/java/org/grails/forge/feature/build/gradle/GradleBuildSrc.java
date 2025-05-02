@@ -24,6 +24,7 @@ import org.grails.forge.build.gradle.GradleBuildCreator;
 import org.grails.forge.feature.build.gradle.templates.buildSrcBuildGradle;
 import org.grails.forge.options.BuildTool;
 import org.grails.forge.template.RockerTemplate;
+import org.grails.forge.util.VersionInfo;
 
 @Singleton
 public class GradleBuildSrc implements GradleBuildSrcFeature {
@@ -65,7 +66,8 @@ public class GradleBuildSrc implements GradleBuildSrcFeature {
                 generatorContext.getApplicationType(),
                 generatorContext.getProject(),
                 generatorContext.getFeatures(),
-                build
+                build,
+                VersionInfo.getGrailsVersion()
         )));
     }
 

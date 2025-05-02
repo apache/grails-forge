@@ -17,6 +17,7 @@ import org.grails.forge.feature.build.gradle.templates.buildSrcBuildGradle
 import org.grails.forge.fixture.ContextFixture
 import org.grails.forge.fixture.ProjectFixture
 import org.grails.forge.options.*
+import org.grails.forge.util.VersionInfo
 
 import java.util.function.Function
 
@@ -96,7 +97,8 @@ class BuildBuilder implements ProjectFixture, ContextFixture {
         GradleBuild build = gradleBuild(options, features, project, type)
         CoordinateResolver resolver = ctx.getBean(CoordinateResolver);
         Function<String, Coordinate> coordinateResolver = (artifactId) -> resolver.resolve(artifactId).orElseThrow(() -> new LookupFailedException(artifactId))
-        return buildGradle.template(type, project, coordinateResolver, features, build).render().toString()
+        String grailsVersion = VersionInfo.grailsVersion
+        return buildGradle.template(type, project, coordinateResolver, features, build, grailsVersion).render().toString()
     }
 
     String renderBuildSrc() {
@@ -109,9 +111,9 @@ class BuildBuilder implements ProjectFixture, ContextFixture {
 
         Options options = new Options(testFramework, jdkVersion)
         Features features = getFeatures(featureNames, options, type)
-
+        String grailsVersion = VersionInfo.grailsVersion
         GradleBuild build = gradleBuild(options, features, project, type)
-        return buildSrcBuildGradle.template(type, project, features, build).render().toString()
+        return buildSrcBuildGradle.template(type, project, features, build, grailsVersion).render().toString()
     }
 
     private GradleBuildCreator getGradleDependencyResolver() {
