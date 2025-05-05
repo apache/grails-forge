@@ -33,3 +33,7 @@ if (!ossUser.isEmpty() && !ossPass.isEmpty()) {
 build {
     dependsOn clean
 }
+
+apply {
+    from layout.projectDirectory.file('gradle/rat-root-config.gradle')
+}
