@@ -36,6 +36,11 @@ jobs:
           unzip cli -d tmp
           mv tmp/grails-cli-* tmp/cli
           ./tmp/cli/bin/grails --version
+      - name: "📤 Upload CLI Zip to Workflow Summary Page"
+        uses: actions/upload-artifact@v4
+        with:
+          name: grails-cli-snapshot
+          path: cli.zip
   linux:
     name: "Build Linux Native CLI"
     runs-on: ubuntu-latest
