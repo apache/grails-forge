@@ -20,7 +20,6 @@
 import groovy.transform.CompileStatic
 
 plugins {
-    id "org.grails.forge.internal.published-module"
     id "org.grails.forge.internal.convention"
 }
 

@@ -20,10 +20,12 @@
 import org.grails.forge.internal.tasks.WriteGrailsVersionInfoTask
 
 plugins {
-    id "org.grails.forge.internal.published-module"
     id "org.grails.forge.internal.convention"
     id "org.grails.forge.rocker"
 }
+
+version = project.projectVersion
+group = "org.apache.grails.forge"
 
 sourceSets {
     main {
@@ -64,11 +66,12 @@ nohttp {
     source.exclude "**/pom.rocker.raw"
 }
 
-javadoc {
-    options.encoding = 'UTF-8'
-}
-
 repositories {
     maven { url = 'https://repo.grails.org/grails/core' }
     mavenCentral()
+}
+
+apply {
+    from rootProject.layout.projectDirectory.file('gradle/java-config.gradle')
+    from rootProject.layout.projectDirectory.file('gradle/publish-config.gradle')
 }

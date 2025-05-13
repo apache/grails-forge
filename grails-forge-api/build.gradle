@@ -21,6 +21,9 @@ plugins {
     id 'org.grails.forge.internal.build.openapi-module'
 }
 
+version = project.projectVersion
+group = "org.apache.grails.forge"
+
 dependencies {
     annotationProcessor "io.micronaut.openapi:micronaut-openapi"
     annotationProcessor "com.google.code.findbugs:jsr305"
@@ -45,4 +48,9 @@ dependencies {
     testImplementation "io.micronaut:micronaut-http-client"
     testImplementation "io.micronaut.test:micronaut-test-spock"
     testImplementation "ch.qos.logback:logback-classic:$logbackClassicVersion"
+}
+
+apply {
+    from rootProject.layout.projectDirectory.file('gradle/java-config.gradle')
+    from rootProject.layout.projectDirectory.file('gradle/publish-config.gradle')
 }

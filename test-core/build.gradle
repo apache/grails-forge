@@ -22,6 +22,9 @@ plugins {
     id "org.grails.forge.rocker"
 }
 
+version = project.projectVersion
+group = "org.apache.grails.forge"
+
 ext {
     picocliVersion = '4.7.5'
 }

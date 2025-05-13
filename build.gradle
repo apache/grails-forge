@@ -17,35 +17,25 @@
  *  under the License.
  */
 
-plugins {
-    id "io.github.gradle-nexus.publish-plugin"
-    id "org.grails.forge.internal.aggregator"
-}
+import java.time.Instant
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 
 version = project.projectVersion
 group = "org.apache.grails.forge"
 
-def ossUser = System.getenv("SONATYPE_USERNAME") ?: rootProject.hasProperty("sonatypeOssUsername") ? project.sonatypeOssUsername : ''
-def ossPass = System.getenv("SONATYPE_PASSWORD") ?: rootProject.hasProperty("sonatypeOssPassword") ? project.sonatypeOssPassword : ''
-def ossStagingProfileId = System.getenv("SONATYPE_STAGING_PROFILE_ID") ?: project.hasProperty("sonatypeOssStagingProfileId") ? project.sonatypeOssStagingProfileId : ''
+// we must apply the publish configuration first or the aggregator plugin will not work
+apply from: layout.projectDirectory.file('gradle/publish-root-config.gradle')
+apply plugin: 'org.grails.forge.internal.aggregator'
 
-if (!ossUser.isEmpty() && !ossPass.isEmpty()) {
-    String version = String.valueOf(rootProject.getVersion());
-    if ("unspecified".equals(version)) {
-        throw new RuntimeException("The root project doesn't define a version. Please set the version in the root project.");
-    }
-    nexusPublishing {
-        repositories {
-            sonatype {
-                allowInsecureProtocol = rootProject.hasProperty("allowInsecurePublishing")
-                username = ossUser
-                password = ossPass
-                stagingProfileId = ossStagingProfileId
-                nexusUrl = uri("https://s01.oss.sonatype.org/service/local/")
-                snapshotRepositoryUrl = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
-            }
-        }
-    }
+
+ext {
+    buildInstant = java.util.Optional.ofNullable(System.getenv("SOURCE_DATE_EPOCH"))
+            .map(Long::parseLong)
+            .map(Instant::ofEpochSecond)
+            .orElseGet(Instant::now)
+    formattedBuildDate = DateTimeFormatter.ISO_INSTANT.format(buildInstant)
+    buildDate = (buildInstant as Instant).atZone(ZoneOffset.UTC) // for reproducible builds
 }
 
 // buildSrc tests fail occasionally without running clean first

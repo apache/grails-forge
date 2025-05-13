@@ -56,6 +56,7 @@ buildCache {
 
 rootProject.name = 'grails-forge'
 
+include 'grails-cli'
 include 'grails-forge-core'
 include 'grails-forge-cli'
 include 'test-core'

@@ -18,7 +18,6 @@
  */
 
 plugins {
-    id "org.grails.forge.internal.published-module"
     id "org.grails.forge.internal.convention"
     id "application"
     id "com.github.johnrengelman.shadow"

@@ -22,6 +22,9 @@ plugins {
     id 'org.graalvm.buildtools.native' version '0.10.6'
 }
 
+version = project.projectVersion
+group = "org.apache.grails.forge"
+
 sourceSets {
     main {
         rocker {
@@ -115,4 +118,9 @@ sdkman {
             "WINDOWS_64":"https://github.com/apache/grails-forge/releases/download/v${project.version}/grails-win-amd64-v${project.version}.zip",
             "LINUX_64":"https://github.com/apache/grails-forge/releases/download/v${project.version}/grails-linux-amd64-v${project.version}.zip"
     ]
+}
+
+apply {
+    from rootProject.layout.projectDirectory.file('gradle/java-config.gradle')
+    from rootProject.layout.projectDirectory.file('gradle/publish-config.gradle')
 }
