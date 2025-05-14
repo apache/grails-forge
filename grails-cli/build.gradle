@@ -36,7 +36,7 @@ version = projectVersion
 group = 'org.apache.grails'
 
 repositories {
-    mavenLocal()
+    // mavenLocal()
     mavenCentral()
     gradlePluginPortal()
     maven { url = 'https://repo.grails.org/grails/restricted' }
