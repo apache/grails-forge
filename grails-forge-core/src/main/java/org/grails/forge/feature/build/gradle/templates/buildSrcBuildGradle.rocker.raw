@@ -41,7 +41,7 @@ repositories {
     maven { url = 'https://repo.grails.org/grails/restricted' }
 }
 dependencies {
-    implementation platform("org.grails:grails-bom:@VersionInfo.getGrailsVersion()")
+    implementation platform("org.apache.grails:grails-gradle-bom:@VersionInfo.getGrailsVersion()")
 @for (GradleDependency dependency : gradleBuild.getBuildSrcDependencies()) {
     @dependency.toSnippet()
 }
