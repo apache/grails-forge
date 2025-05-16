@@ -63,7 +63,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: grails-cli-snapshot
-          path: cli.zip
+          path: tmp1/cli
   publish:
     if: github.repository_owner == 'apache' && github.event_name == 'push'
     needs: [ build ]
