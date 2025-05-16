@@ -58,14 +58,11 @@ jobs:
           unzip cli -d tmp1
           mv tmp1/grails-cli-* tmp1/cli
           ./tmp1/cli/grails --version
-      - name: Debug Directory
-        run: |
-          cd tmp1/cli/.grails
-          ls -la
       - name: "📤 Upload CLI Zip to Workflow Summary Page"
         if: ${{ matrix.java == '17' }}
         uses: actions/upload-artifact@v4
         with:
+          include-hidden-files: true
           name: grails-cli-snapshot
           path: |
             tmp1/cli/**
