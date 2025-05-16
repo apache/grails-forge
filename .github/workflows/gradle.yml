@@ -63,7 +63,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: grails-cli-snapshot
-          path: tmp1/cli
+          path: |
+            tmp1/cli/.*/** # include .grails directory
+            tmp1/cli
   publish:
     if: github.repository_owner == 'apache' && github.event_name == 'push'
     needs: [ build ]
