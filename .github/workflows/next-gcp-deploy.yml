@@ -41,7 +41,7 @@ jobs:
     env:
       IMAGE_NAME: us-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}/${{ secrets.GCP_APP_NAME }}:next
     steps:
-      - name: "🔑 Login"
+      - name: "🔑 Login to Google Cloud"
         uses: google-github-actions/setup-gcloud@20c93dacc1d70ddbce76c63ab32c35595345bdd1
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
@@ -95,7 +95,7 @@ jobs:
     env:
       IMAGE_NAME: us-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}/${{ secrets.GCP_APP_NAME }}-analytics:next
     steps:
-      - name: "🔑 Login"
+      - name: "🔑 Login to Google Cloud"
         uses: google-github-actions/setup-gcloud@20c93dacc1d70ddbce76c63ab32c35595345bdd1
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}

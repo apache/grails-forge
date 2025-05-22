@@ -49,7 +49,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: v${{ needs.build.outputs.release_version }}
-      - name: "🔑 Login"
+      - name: "🔑 Login to Google Cloud"
         uses: google-github-actions/setup-gcloud@20c93dacc1d70ddbce76c63ab32c35595345bdd1
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
@@ -104,7 +104,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: v${{ needs.build.outputs.release_version }}
-      - name: "🔑 Login"
+      - name: "🔑 Login to Google Cloud"
         uses: google-github-actions/setup-gcloud@20c93dacc1d70ddbce76c63ab32c35595345bdd1
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
