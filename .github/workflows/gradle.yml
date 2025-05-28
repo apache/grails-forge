@@ -52,9 +52,9 @@ jobs:
           ./tmp/forge-cli/bin/grails-forge-cli --version
       - name: "✅ Verify combined CLI"
         run: |
-          cp grails-cli/build/distributions/grails-cli-*.zip cli.zip
+          cp grails-cli/build/distributions/apache-grails-*.zip cli.zip
           unzip cli -d tmp1
-          mv tmp1/grails-cli-* tmp1/cli
+          mv tmp1/apache-grails-* tmp1/cli
           ./tmp1/cli/grails --version
       - name: "📤 Upload CLI Zip to Workflow Summary Page"
         if: ${{ matrix.java == '17' }}
@@ -63,8 +63,7 @@ jobs:
           include-hidden-files: true
           name: grails-cli-snapshot
           path: |
-            tmp1/cli/**
-            tmp1/cli/.grails/**/* # include .grails directory
+            grails-cli/build/distributions/apache-grails-*.zip
   publish:
     if: github.repository_owner == 'apache' && github.event_name == 'push'
     needs: build
