@@ -154,4 +154,12 @@ tasks.withType(GroovyCompile).configureEach {
 
 tasks.withType(Groovydoc).configureEach {
     classpath += project.configurations.documentation
+    windowTitle = "${project.findProperty('pomArtifactId') ?: project.name} - $projectVersion"
+    docTitle = "${project.findProperty('pomArtifactId') ?: project.name} - $projectVersion"
+    access = GroovydocAccess.PROTECTED
+    includeAuthor = false
+    includeMainForScripts = false
+    processScripts = false
+    noTimestamp = true
+    noVersionStamp = false
 }
