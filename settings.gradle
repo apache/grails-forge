@@ -16,18 +16,6 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenCentral()
-    }
-}
-buildscript {
-    dependencies {
-        classpath "org.antlr:antlr4-runtime:$antlr4Version"
-    }
-}
 plugins {
     id "com.gradle.develocity" version "$develocityVersion"
     id "com.gradle.common-custom-user-data-gradle-plugin" version "$customUserDataVersion"

@@ -68,6 +68,7 @@ dependencies {
         exclude group: 'org.yaml'
         exclude group: 'org.asciidoctor'
     }
+    implementation "org.antlr:antlr4-runtime:$antlr4Version"
 }
 
 gradlePlugin {
