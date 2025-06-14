@@ -31,8 +31,7 @@ tasks.withType(Test).configureEach {
         exceptionFormat = 'full'
     }
 
-    jvmArgs '-Duser.country=US'
-    jvmArgs '-Duser.language=en'
+    jvmArgs('-Duser.country=US', '-Duser.language=en')
     forkEvery = 100
     maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
     maxHeapSize = '2G'

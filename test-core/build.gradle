@@ -54,7 +54,7 @@ dependencies {
     testImplementation 'io.micronaut.picocli:micronaut-picocli'
 
     if (project.hasProperty('micronautVersion')) {
-        testCompileOnly "io.micronaut:micronaut-inject-groovy:${micronautVersion}"
+        testCompileOnly "io.micronaut:micronaut-inject-groovy:$micronautVersion"
     }
 
     testImplementation "org.codehaus.groovy:groovy:$groovyVersion"

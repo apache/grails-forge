@@ -83,8 +83,8 @@ class GradleSpec extends Specification implements ProjectFixture, ContextFixture
         expect:
         if (!buildSrcGradle.contains('repositories')) {
             // this test randomly fails.  adding logging for when it fails to debug further
-            log.error("Output: ${output}")
-            log.error("Build Src: ${buildSrcGradle}")
+            log.error("Output: {}", output)
+            log.error("Build Src: {}", buildSrcGradle)
         }
         buildSrcGradle.contains('repositories')
         buildSrcGradle.contains('dependencies')

@@ -17,6 +17,8 @@
  *  under the License.
  */
 
+
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.grails.forge.internal.tasks.GenerateManpageAsciidoc
 import org.grails.forge.internal.tasks.PicocliBuildCompletionTask
 
@@ -54,7 +56,7 @@ configurations {
         canBeConsumed = true
         canBeResolved = false
         outgoing.artifact(processManPages.map {
-            project.layout.buildDirectory.dir('processed-manpages').get().asFile
+            it.project.layout.buildDirectory.dir('processed-manpages').get().asFile
         })
     }
 }
@@ -86,7 +88,7 @@ dependencies {
     testImplementation "org.reflections:reflections:$reflectionsVersion"
     testImplementation 'org.testcontainers:spock'
     if (project.hasProperty('micronautVersion')) {
-        testCompileOnly "io.micronaut:micronaut-inject-groovy:${micronautVersion}"
+        testCompileOnly "io.micronaut:micronaut-inject-groovy:$micronautVersion"
     }
 
     testImplementation "org.codehaus.groovy:groovy:$groovyVersion"
@@ -123,7 +125,7 @@ apply {
 def generateManpageAsciiDoc = tasks.register('generateManpageAsciiDoc', GenerateManpageAsciidoc) {
     mainClass = application.mainClass
     classpath.from(configurations.generateConfig, sourceSets.main.runtimeClasspath)
-    outputDirectory.set(layout.buildDirectory.dir('generated-picocli-docs'))
+    outputDirectory = layout.buildDirectory.dir('generated-picocli-docs')
 }
 
 processManPages.configure { Sync it ->
@@ -162,7 +164,7 @@ distributions {
     }
 }
 
-tasks.named('shadowJar') {
+tasks.named('shadowJar', ShadowJar) {
     mergeServiceFiles()
 }
 
@@ -180,9 +182,9 @@ tasks.register('copyShadowJar', Sync) {
 }
 
 tasks.register('exploded', Sync) {
-    dependsOn 'distZip'
-    from zipTree(distZip.outputs.files.singleFile)
-    into project.layout.buildDirectory.dir('exploded')
+    dependsOn('distZip')
+    from(zipTree(distZip.outputs.files.singleFile))
+    into(project.layout.buildDirectory.dir('exploded'))
     eachFile { FileCopyDetails fcd ->
         fcd.relativePath = new RelativePath(true, fcd.relativePath.segments.drop(1))
     }
@@ -192,8 +194,8 @@ tasks.register('exploded', Sync) {
 }
 
 tasks.register('cleanup', Delete) {
-    delete project.rootProject.layout.buildDirectory.file('libs/cli.jar')
-    delete project.layout.buildDirectory.dir('dist')
+    delete(project.rootProject.layout.buildDirectory.file('libs/cli.jar'))
+    delete(project.layout.buildDirectory.dir('dist'))
 }
 
 tasks.named('clean') {
@@ -204,16 +206,14 @@ tasks.named('assemble') {
     dependsOn('exploded')
 }
 
-configurations {
-    all {
-        resolutionStrategy {
-            eachDependency { DependencyResolveDetails details ->
-                if (details.requested.group == 'org.codehaus.groovy') {
-                    details.useVersion(groovyVersion)
-                }
-                if (details.requested.name == 'spock-core') {
-                    details.useVersion(spockVersion)
-                }
+configurations.configureEach {
+    resolutionStrategy {
+        eachDependency { DependencyResolveDetails details ->
+            if (details.requested.group == 'org.codehaus.groovy') {
+                details.useVersion(groovyVersion)
+            }
+            if (details.requested.name == 'spock-core') {
+                details.useVersion(spockVersion)
             }
         }
     }

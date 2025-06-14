@@ -59,7 +59,7 @@ dependencies {
     testCompileOnly "io.micronaut:micronaut-inject-groovy:$micronautVersion"
 
     if (project.hasProperty('micronautVersion')) {
-        testCompileOnly "io.micronaut:micronaut-inject-groovy:${micronautVersion}"
+        testCompileOnly "io.micronaut:micronaut-inject-groovy:$micronautVersion"
     }
 
     testImplementation "org.codehaus.groovy:groovy:$groovyVersion"
@@ -82,16 +82,14 @@ apply {
     from rootProject.layout.projectDirectory.file('gradle/doc-config.gradle')
 }
 
-configurations {
-    all {
-        resolutionStrategy {
-            eachDependency { DependencyResolveDetails details ->
-                if (details.requested.group == 'org.codehaus.groovy') {
-                    details.useVersion(groovyVersion)
-                }
-                if (details.requested.name == 'spock-core') {
-                    details.useVersion(spockVersion)
-                }
+configurations.configureEach {
+    resolutionStrategy {
+        eachDependency { DependencyResolveDetails details ->
+            if (details.requested.group == 'org.codehaus.groovy') {
+                details.useVersion(groovyVersion)
+            }
+            if (details.requested.name == 'spock-core') {
+                details.useVersion(spockVersion)
             }
         }
     }

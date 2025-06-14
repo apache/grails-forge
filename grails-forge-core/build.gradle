@@ -70,7 +70,7 @@ dependencies {
     grailsWrapper "org.apache.grails.profiles:base:$grailsVersion@jar"
 
     if (project.hasProperty('micronautVersion')) {
-        testCompileOnly "io.micronaut:micronaut-inject-groovy:${micronautVersion}"
+        testCompileOnly "io.micronaut:micronaut-inject-groovy:$micronautVersion"
     }
 
     testImplementation "org.codehaus.groovy:groovy:$groovyVersion"
@@ -94,14 +94,6 @@ sourceSets.main.resources.srcDir(grailsVersionInfo)
 
 rocker {
     postProcessing = ['org.grails.forge.rocker.plugin.WhitespaceProcessor']
-}
-
-repositories {
-    // mavenLocal()
-    maven { url = 'https://repo.grails.org/grails/restricted' }
-    maven { url = 'https://repository.apache.org/content/groups/staging' }
-    maven { url = 'https://repository.apache.org/content/groups/snapshots' }
-    mavenCentral()
 }
 
 TaskProvider<Sync> copyGrailsWrapper = tasks.register('copyGrailsWrapper', Sync)
@@ -138,16 +130,14 @@ nohttp {
     }
 }
 
-configurations {
-    all {
-        resolutionStrategy {
-            eachDependency { DependencyResolveDetails details ->
-                if (details.requested.group == 'org.codehaus.groovy') {
-                    details.useVersion(groovyVersion)
-                }
-                if (details.requested.name == 'spock-core') {
-                    details.useVersion(spockVersion)
-                }
+configurations.configureEach {
+    resolutionStrategy {
+        eachDependency { DependencyResolveDetails details ->
+            if (details.requested.group == 'org.codehaus.groovy') {
+                details.useVersion(groovyVersion)
+            }
+            if (details.requested.name == 'spock-core') {
+                details.useVersion(spockVersion)
             }
         }
     }

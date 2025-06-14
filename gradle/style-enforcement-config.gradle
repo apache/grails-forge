@@ -23,21 +23,21 @@ apply plugin: 'io.spring.nohttp' // enforce https everywhere
 
 spotless {
     java {
-        licenseHeaderFile rootProject.file("${rootDir}/config/spotless.license.java")
-        target 'src/main/java/**/*.java'
+        licenseHeaderFile(rootProject.file("${rootDir}/config/spotless.license.java"))
+        target('src/main/java/**/*.java')
     }
     groovy {
-        licenseHeaderFile rootProject.file("${rootDir}/config/spotless.license.java")
-        target 'src/main/groovy/**'
+        licenseHeaderFile(rootProject.file("${rootDir}/config/spotless.license.java"))
+        target('src/main/groovy/**')
     }
     format 'javaMisc', {
-        target 'src/main/**/package-info.java', 'src/main/**/module-info.java'
-        licenseHeaderFile rootProject.file('config/spotless.license.java'), '\\/\\*\\*'
+        target('src/main/**/package-info.java', 'src/main/**/module-info.java')
+        licenseHeaderFile(rootProject.file('config/spotless.license.java'), '\\/\\*\\*')
     }
 }
 
 checkstyle {
-    configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
+    configFile = project.rootProject.file('config/checkstyle/checkstyle.xml')
 
     // Per submodule
     maxErrors = 1
@@ -47,7 +47,7 @@ checkstyle {
 }
 
 nohttp {
-    source.exclude 'src/test/**', 'build/**', 'src/main/resources/assets/**', 'src/resources/main/pom.xml'
+    source.exclude('src/test/**', 'build/**', 'src/main/resources/assets/**', 'src/resources/main/pom.xml')
 }
 
 tasks.named('checkstyleTest').configure {
