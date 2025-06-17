@@ -28,7 +28,11 @@ tasks.withType(Test).configureEach {
         }
     }
     testLogging {
+        events('passed', 'skipped', 'failed')
+        showExceptions = true
         exceptionFormat = 'full'
+        showCauses = true
+        showStackTraces = true
     }
 
     jvmArgs('-Duser.country=US', '-Duser.language=en')
