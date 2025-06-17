@@ -52,8 +52,8 @@ class MySQLSpec extends ApplicationContextSpec {
         ctx.getConfiguration().get("dataSource.driverClassName") == 'com.mysql.cj.jdbc.Driver'
         ctx.getConfiguration().get("dataSource.username") == 'root'
         ctx.getConfiguration().get("dataSource.password") == ''
-        ctx.getConfiguration().get("environments.development.dataSource.url") == 'jdbc:mysql://localhost:3306/devDb'
-        ctx.getConfiguration().get("environments.test.dataSource.url") == 'jdbc:mysql://localhost:3306/testDb'
-        ctx.getConfiguration().get("environments.production.dataSource.url") == 'jdbc:mysql://localhost:3306/prodDb'
+        ctx.getConfiguration().get("environments.development.dataSource.url") == 'jdbc:mysql://localhost:3306/devDb?tcpKeepAlive=true'
+        ctx.getConfiguration().get("environments.test.dataSource.url") == 'jdbc:mysql://localhost:3306/testDb?tcpKeepAlive=true'
+        ctx.getConfiguration().get("environments.production.dataSource.url") == 'jdbc:mysql://localhost:3306/prodDb?tcpKeepAlive=true'
     }
 }
