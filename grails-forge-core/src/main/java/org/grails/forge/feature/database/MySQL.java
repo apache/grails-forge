@@ -86,8 +86,8 @@ public class MySQL extends DatabaseDriverFeature {
     @Override
     public void apply(GeneratorContext generatorContext) {
         generatorContext.addDependency(Dependency.builder()
-                .groupId("mysql")
-                .artifactId("mysql-connector-java")
+                .groupId("com.mysql")
+                .artifactId("mysql-connector-j")
                 .runtimeOnly());
     }
 }
