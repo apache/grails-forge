@@ -41,17 +41,17 @@ public class H2 extends DatabaseDriverFeature {
 
     @Override
     public String getJdbcDevUrl() {
-        return "jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE;TCP_KEEPALIVE=TRUE";
+        return "jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE";
     }
 
     @Override
     public String getJdbcTestUrl() {
-        return "jdbc:h2:mem:testDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE;TCP_KEEPALIVE=TRUE";
+        return "jdbc:h2:mem:testDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE";
     }
 
     @Override
     public String getJdbcProdUrl() {
-        return "jdbc:h2:./prodDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE;TCP_KEEPALIVE=TRUE";
+        return "jdbc:h2:./prodDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE";
     }
 
     @Override
